@@ -1,0 +1,28 @@
+{
+  "name": "brush-bliss",
+  "version": "1.0.0",
+  "description": "BrushClean Pro - Professional makeup brush cleaning service landing page with waitlist signup",
+  "main": "index.html",
+  "scripts": {
+    "dev": "vercel dev",
+    "build": "echo 'No build step required for static site'",
+    "start": "vercel dev"
+  },
+  "keywords": [
+    "makeup",
+    "brush-cleaning",
+    "beauty",
+    "landing-page",
+    "waitlist"
+  ],
+  "author": "BrushClean Pro",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/brushclean-pro/brush-bliss"
+  },
+  "homepage": "https://brush-bliss.vercel.app",
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}
