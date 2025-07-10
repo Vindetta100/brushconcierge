@@ -1,8 +1,8 @@
-# BrushClean Pro 💄✨
+# Brush Concierge 💄✨
 
 **Professional makeup brush cleaning service landing page with waitlist signup**
 
-🌐 **Live Site:** https://brush-bliss.vercel.app  
+🌐 **Live Site:** https://brushconcierge.com  
 📊 **Status:** Production Ready  
 🚀 **Deployed:** July 5, 2025  
 
@@ -10,7 +10,7 @@
 
 ## 📋 Project Overview
 
-BrushClean Pro is a static landing page for a makeup brush cleaning subscription service ($19.99/month). The site features a professional design, waitlist signup form, customer testimonials, and comprehensive product information.
+Brush Concierge is a static landing page for a makeup brush cleaning subscription service ($19.99/month). The site features a professional design, waitlist signup form, customer testimonials, and comprehensive product information.
 
 ### Key Features
 - **Hero Section** with compelling value proposition
@@ -26,6 +26,7 @@ BrushClean Pro is a static landing page for a makeup brush cleaning subscription
 ### Technology Stack
 - **Frontend:** Vanilla HTML5, CSS3, JavaScript (ES6+)
 - **Hosting:** Vercel Static Site Deployment
+- **Domain:** brushconcierge.com
 - **Images:** Cloudinary CDN
 - **Analytics:** Built-in click tracking
 - **Performance:** 0.1ms page load time
@@ -42,6 +43,9 @@ npm >= 6.0.0
 
 # Install Vercel CLI globally
 npm install -g vercel
+
+# Install local static file server
+npm install -g serve
 ```
 
 ### Local Development
@@ -50,11 +54,27 @@ npm install -g vercel
 cd brush-bliss
 
 # Start local development server
-vercel dev
-# OR
-npx vercel dev
+npx serve .
 
 # Open browser to http://localhost:3000
+```
+
+### Deployment
+- **Purpose**: Ensure correct project linking and deployment.
+- **Steps**:
+    1. **Verify Vercel Account**: Run `vercel whoami`.
+    2. **Link Project**:
+        - Run `vercel link`.
+        - When prompted `Set up “~/Desktop/projects/brush-bliss”?`, enter `y`.
+        - When prompted `Which scope should contain your project?`, select `pham83-1750's projects`.
+        - When prompted `Link to existing project?`, enter `y`.
+        - When prompted `What’s the name of your existing project?`, enter `brush-bliss` (the actual Vercel project name, not the domain alias).
+    3. **Deploy to Production**: Run `vercel --prod`.
+    4. **Switch Projects (if applicable)**:
+        - Navigate: `cd /path/to/your/other/project`.
+        - Re-link: `vercel link` (follow prompts for the other project's name).
+        - Deploy: `vercel --prod`.
+- **Troubleshooting**: Refer to "🔧 Deployment Section" for details on caching/DNS.
 ```
 
 ### Project Structure
@@ -78,13 +98,10 @@ brush-bliss/
 ### Current Deployment Configuration
 
 **Vercel Project Details:**
-- **Project Name:** `brush-bliss`
-- **Project URL:** https://vercel.com/vindetta100s-projects/brush-bliss
-- **Live Site:** https://brush-bliss.vercel.app
-- **Alternative URLs:**
-  - https://brush-bliss-vindetta100-vindetta100s-projects.vercel.app
-  - https://brush-bliss-vindetta100s-projects.vercel.app
-  - https://brush-bliss-igxlpxbt6-vindetta100s-projects.vercel.app
+- **Project Name:** `brushconcierge`
+- **Project URL:** https://vercel.com/pham83-1750s-projects/brushconcierge
+- **Live Site:** https://brushconcierge.com
+- **GitHub Repository:** https://github.com/Vindetta100/brushconcierge.git
 
 ### Deployment Commands
 
@@ -116,6 +133,8 @@ git add .
 git commit -m "Update: [describe changes]"
 git push origin main
 # (Vercel will auto-deploy on git push if connected)
+
+**Note for AI Assistants:** After deployment, if changes are not immediately visible on the custom domain (`brushconcierge.com`), it may be due to browser caching or DNS propagation delays. Advise users to clear their browser cache or check the Vercel-generated preview URL first.
 ```
 
 ### Configuration Files Explained
@@ -187,9 +206,9 @@ git push origin main
 #### package.json Configuration
 ```json
 {
-  "name": "brush-bliss",
+  "name": "brushconcierge",
   "version": "1.0.0",
-  "description": "BrushClean Pro - Professional makeup brush cleaning service landing page with waitlist signup",
+  "description": "Brush Concierge - Professional makeup brush cleaning service landing page with waitlist signup",
   "main": "index.html",
   "scripts": {
     "dev": "vercel dev",
@@ -203,9 +222,9 @@ git push origin main
     "landing-page",
     "waitlist"
   ],
-  "author": "BrushClean Pro",
+  "author": "Brush Concierge",
   "license": "MIT",
-  "homepage": "https://brush-bliss.vercel.app",
+  "homepage": "https://brushconcierge.com",
   "engines": {
     "node": ">=14.0.0"
   }
@@ -230,7 +249,7 @@ git push origin main
 **CRITICAL:** This project is completely independent from omo.network or any other projects.
 
 **Verification Checklist:**
-- ✅ Separate Vercel project (`vindetta100s-projects/brush-bliss`)
+- ✅ Separate Vercel project (`pham83-1750s-projects/brushconcierge`)
 - ✅ Independent deployment pipeline
 - ✅ No shared configuration or dependencies
 - ✅ Unique project name and URLs
@@ -406,8 +425,8 @@ Before deploying changes, verify:
 ## 📞 Support & Maintenance
 
 ### Key Resources
-- **Vercel Dashboard:** https://vercel.com/vindetta100s-projects/brush-bliss
-- **Live Site:** https://brush-bliss.vercel.app
+- **Vercel Dashboard:** https://vercel.com/pham83-1750s-projects/brushconcierge
+- **Live Site:** https://brushconcierge.com
 - **Documentation:** This README and deployment-summary.md
 
 ### Monitoring
@@ -441,6 +460,11 @@ Before deploying changes, verify:
 
 ## 📝 Changelog
 
+### v1.0.1 (July 5, 2025)
+- ✅ Business name updated to "Brush Concierge"
+- ✅ Domain `brushconcierge.com` acquired and linked
+- ✅ GitHub repository initialized and pushed
+
 ### v1.0.0 (July 5, 2025)
 - ✅ Initial deployment to Vercel
 - ✅ Complete landing page implementation
@@ -469,6 +493,6 @@ This README provides all necessary context for:
 
 ---
 
-**🚀 BrushClean Pro is ready for business and optimized for growth!**
+**🚀 Brush Concierge is ready for business and optimized for growth!**
 
 *For questions or issues, refer to the deployment-summary.md and implementation-plan.md files for additional context.*

@@ -1,12 +1,12 @@
 {
-  "name": "brush-bliss",
+  "name": "brushconcierge",
   "version": "1.0.0",
-  "description": "BrushClean Pro - Professional makeup brush cleaning service landing page with waitlist signup",
+  "description": "Brush Concierge - Professional makeup brush cleaning service landing page with waitlist signup",
   "main": "index.html",
   "scripts": {
-    "dev": "vercel dev",
+    "dev": "npx serve .",
     "build": "echo 'No build step required for static site'",
-    "start": "vercel dev"
+    "start": "npx serve ."
   },
   "keywords": [
     "makeup",
@@ -15,13 +15,13 @@
     "landing-page",
     "waitlist"
   ],
-  "author": "BrushClean Pro",
+  "author": "Brush Concierge",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/brushclean-pro/brush-bliss"
+    "url": "https://github.com/Vindetta100/brushconcierge.git"
   },
-  "homepage": "https://brush-bliss.vercel.app",
+  "homepage": "https://brushconcierge.com",
   "engines": {
     "node": ">=14.0.0"
   }

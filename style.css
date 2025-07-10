@@ -687,6 +687,30 @@ select.form-control {
   --shadow-strong: 0 12px 48px rgba(212, 165, 116, 0.25);
 }
 
+/* Logo */
+.logo {
+  position: absolute;
+  top: 40px;
+  left: 20px;
+  font-family: var(--font-family-base);
+  font-size: 48px;
+  font-weight: 700;
+  color: var(--color-text);
+  z-index: 10;
+  background: linear-gradient(135deg, var(--color-text) 0%, var(--color-primary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+@media (max-width: 768px) {
+  .logo {
+    top: 20px;
+    left: 20px;
+    font-size: 1.5rem;
+  }
+}
+
 /* Hero Section */
 .hero {
   background: var(--gradient-hero);
@@ -711,11 +735,21 @@ select.form-control {
 
 .hero .container {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 60px;
+  grid-template-columns: 1fr; /* Default mobile layout */
+  gap: 40px;
+  text-align: center;
   align-items: center;
   position: relative;
   z-index: 1;
+}
+
+/* Desktop layout */
+@media (min-width: 769px) {
+  .hero .container {
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    text-align: left;
+  }
 }
 
 .hero__content {
@@ -723,7 +757,7 @@ select.form-control {
 }
 
 .hero__headline {
-  font-size: 3.5rem;
+  font-size: 28px;
   font-weight: 700;
   line-height: 1.1;
   margin-bottom: 20px;

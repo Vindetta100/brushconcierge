@@ -44,151 +44,6 @@ function toggleFAQ(questionElement) {
 }
 
 // Form validation and submission
-function validateEmail(email) {
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return emailRegex.test(email);
-}
-
-function showSuccessMessage(message) {
-  // Remove any existing success message
-  const existingMessage = document.querySelector('.success-message');
-  if (existingMessage) {
-    existingMessage.remove();
-  }
-  
-  // Create new success message
-  const successMessage = document.createElement('div');
-  successMessage.className = 'success-message';
-  successMessage.textContent = message;
-  
-  document.body.appendChild(successMessage);
-  
-  // Show message with animation
-  setTimeout(() => {
-    successMessage.classList.add('show');
-  }, 100);
-  
-  // Hide message after 4 seconds
-  setTimeout(() => {
-    successMessage.classList.remove('show');
-    setTimeout(() => {
-      if (successMessage.parentNode) {
-        successMessage.parentNode.removeChild(successMessage);
-      }
-    }, 300);
-  }, 4000);
-}
-
-function handleWaitlistSubmission(event) {
-  event.preventDefault();
-  
-  const form = event.target;
-  const email = form.email.value.trim();
-  const name = form.name.value.trim();
-  
-  // Reset any previous error states
-  const emailInput = form.email;
-  const nameInput = form.name;
-  emailInput.style.borderColor = '';
-  nameInput.style.borderColor = '';
-  
-  // Validate email
-  if (!email) {
-    emailInput.style.borderColor = '#e74c3c';
-    emailInput.focus();
-    showErrorMessage('Please enter your email address');
-    return;
-  }
-  
-  if (!validateEmail(email)) {
-    emailInput.style.borderColor = '#e74c3c';
-    emailInput.focus();
-    showErrorMessage('Please enter a valid email address');
-    return;
-  }
-  
-  // Simulate form submission
-  const submitButton = form.querySelector('button[type="submit"]');
-  const originalText = submitButton.textContent;
-  
-  // Show loading state
-  submitButton.textContent = 'Joining...';
-  submitButton.disabled = true;
-  
-  // Simulate API call
-  setTimeout(() => {
-    // Reset form
-    form.reset();
-    
-    // Reset button
-    submitButton.textContent = originalText;
-    submitButton.disabled = false;
-    
-    // Show success message
-    const successText = name 
-      ? `Thank you, ${name}! You're now on the waitlist. Check your email for exclusive updates!`
-      : 'Thank you! You\'re now on the waitlist. Check your email for exclusive updates!';
-    
-    showSuccessMessage(successText);
-    
-    // Track conversion (placeholder for analytics)
-    trackWaitlistSignup(email, name);
-    
-  }, 2000);
-}
-
-function showErrorMessage(message) {
-  // Remove any existing error message
-  const existingMessage = document.querySelector('.error-message');
-  if (existingMessage) {
-    existingMessage.remove();
-  }
-  
-  // Create new error message
-  const errorMessage = document.createElement('div');
-  errorMessage.className = 'error-message';
-  errorMessage.textContent = message;
-  errorMessage.style.cssText = `
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    background: #e74c3c;
-    color: white;
-    padding: 15px 20px;
-    border-radius: 10px;
-    box-shadow: 0 8px 32px rgba(212, 165, 116, 0.2);
-    z-index: 1000;
-    transform: translateX(100%);
-    transition: transform 0.3s ease;
-  `;
-  
-  document.body.appendChild(errorMessage);
-  
-  // Show message with animation
-  setTimeout(() => {
-    errorMessage.style.transform = 'translateX(0)';
-  }, 100);
-  
-  // Hide message after 3 seconds
-  setTimeout(() => {
-    errorMessage.style.transform = 'translateX(100%)';
-    setTimeout(() => {
-      if (errorMessage.parentNode) {
-        errorMessage.parentNode.removeChild(errorMessage);
-      }
-    }, 300);
-  }, 3000);
-}
-
-// Analytics tracking placeholder
-function trackWaitlistSignup(email, name) {
-  // Placeholder for analytics tracking
-  console.log('Waitlist signup tracked:', { email, name, timestamp: new Date().toISOString() });
-  
-  // Here you would typically send data to your analytics service
-  // Example: gtag('event', 'waitlist_signup', { email, name });
-}
-
 // Intersection Observer for animations
 function setupAnimations() {
   const observerOptions = {
@@ -274,7 +129,7 @@ function setupLazyLoading() {
 
 // Add click tracking for CTAs
 function setupCTATracking() {
-  const ctaButtons = document.querySelectorAll('.hero__cta, .waitlist__form button');
+  const ctaButtons = document.querySelectorAll('.hero__cta'); // Only track hero CTA
   ctaButtons.forEach(button => {
     button.addEventListener('click', (event) => {
       const buttonText = button.textContent.trim();
@@ -288,12 +143,6 @@ function setupCTATracking() {
 
 // Initialize everything when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-  // Setup form submission handler
-  const waitlistForm = document.getElementById('waitlist-form');
-  if (waitlistForm) {
-    waitlistForm.addEventListener('submit', handleWaitlistSubmission);
-  }
-  
   // Setup animations and effects
   setupAnimations();
   setupScrollEffects();
@@ -321,11 +170,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Handle window resize for responsive adjustments
 window.addEventListener('resize', () => {
-  // Adjust any responsive elements if needed
-  const heroContent = document.querySelector('.hero__content');
-  if (heroContent && window.innerWidth < 768) {
-    heroContent.style.textAlign = 'center';
-  }
+  // Responsive adjustments now handled through CSS media queries
+  // No JavaScript manipulation of styles needed
 });
 
 // Add keyboard navigation support
