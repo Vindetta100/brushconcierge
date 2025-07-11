@@ -48,7 +48,7 @@ npm install -g vercel
 npm install -g serve
 ```
 
-### Local Development
+### Run Local and Deploy to Production
 ```bash
 # Clone or navigate to project directory
 cd brush-bliss
