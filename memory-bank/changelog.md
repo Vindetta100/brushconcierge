@@ -1,5 +1,12 @@
 # Changelog: Brush Concierge
 
+## [1.1.1] - 2025-07-11
+### Added
+- **Local Run**: Successfully started local development server.
+- **Git Operations**: Committed and pushed changes to `main` branch.
+- **Production Deployment**: Deployed to Vercel production.
+- **Website Verification**: Confirmed latest content on Vercel preview and custom domain.
+
 ## [1.1.0] - 2025-07-08
 ### Fixed
 - **Vercel Deployment**: Resolved issues with custom domain updates and design discrepancies.

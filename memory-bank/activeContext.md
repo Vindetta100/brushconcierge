@@ -1,16 +1,16 @@
 ## Current Work Focus
-- Resolved Vercel deployment and custom domain update issues.
-- Confirmed "Brush Concierge - TEST1" header on local and production sites.
-- Updated `README.md` with comprehensive AI guidance for deployment.
+- Successfully ran website locally and deployed to Vercel production.
+- Verified production site consistency across Vercel preview and custom domain.
+- Addressed user feedback regarding perceived site update discrepancy.
 
 ## Recent Changes
+- **2025-07-11**: Ran website locally using `npx serve .`.
+- **2025-07-11**: Committed and pushed changes to `main` branch.
+- **2025-07-11**: Deployed to Vercel production.
+- **2025-07-11**: Verified production site on Vercel preview and custom domain.
+- **2025-07-11**: Addressed user feedback on perceived production site discrepancy.
 - **2025-07-08**: Resolved Vercel deployment and custom domain update issues.
 - **2025-07-08**: Confirmed "Brush Concierge - TEST1" header on local and production.
-- **2025-07-08**: Updated `README.md` with `npm install -g serve` prerequisite.
-- **2025-07-08**: Updated `README.md` local development command to `npx serve .`.
-- **2025-07-08**: Added browser caching/DNS note to `README.md` deployment section.
-- **2025-07-08**: Consolidated Vercel deployment steps into `README.md` "Quick Start".
-- **2025-07-06**: Created `feature/add-logo` branch.
 - **2025-07-06**: Added `.logo` div to `index.html`.
 - **2025-07-06**: Added CSS for `.logo` to `style.css`.
 - **2025-07-06**: Verified local display of logo.
