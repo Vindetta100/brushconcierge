@@ -1,5 +1,19 @@
 # Changelog: Brush Concierge
 
+## [1.1.2] - 2025-07-14
+### Added
+- **Checkout System**: Implemented new checkout flow with `checkout.html`, `checkout.css`, `checkout.js`.
+- **Git Branch**: Created `feature/checkout-system` for development.
+
+### Changed
+- **index.html**: Updated CTAs to link to new checkout page.
+- **app.js**: Removed waitlist-specific functions.
+- **README.md**: Updated with new project details and instructions.
+
+### Fixed
+- **Git Warning**: Resolved embedded repository warning.
+- **CSS Syntax**: Corrected error in `checkout.css`.
+
 ## [1.1.1] - 2025-07-11
 ### Added
 - **Local Run**: Successfully started local development server.

@@ -4,6 +4,7 @@
 - **Type**: Static Landing Page
 - **Frontend**: Vanilla HTML5, CSS3, JavaScript (ES6+)
 - **Hosting**: Vercel Static Site Deployment
+- **Production URL**: https://brushconcierge.com/
 - **CDN**: Cloudinary for images
 - **Analytics**: Built-in click tracking (console logging, ready for GA)
 
