@@ -575,12 +575,32 @@ class CheckoutManager {
                 body: JSON.stringify(formData)
             });
             
+            // Check if response is ok
             if (!response.ok) {
-                const errorData = await response.json();
-                throw new Error(errorData.error || `HTTP error! status: ${response.status}`);
+                let errorMessage = `HTTP error! status: ${response.status}`;
+                
+                // Try to parse error response as JSON
+                try {
+                    const errorData = await response.json();
+                    errorMessage = errorData.error || errorMessage;
+                } catch (parseError) {
+                    // If JSON parsing fails, try to get text
+                    try {
+                        const errorText = await response.text();
+                        if (errorText && !errorText.includes('<html')) {
+                            errorMessage = errorText;
+                        }
+                    } catch (textError) {
+                        // Use default error message
+                    }
+                }
+                
+                throw new Error(errorMessage);
             }
             
-            const { url } = await response.json();
+            // Parse successful response
+            const responseData = await response.json();
+            const { url } = responseData;
             
             if (!url) {
                 throw new Error('No checkout URL received from server');
