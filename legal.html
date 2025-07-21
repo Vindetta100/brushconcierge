@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service & Privacy Policy - Brush Concierge</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Legal Page Specific Styles */
+        .legal-header {
+            background: var(--gradient-hero);
+            padding: 60px 0 40px;
+            text-align: center;
+        }
+
+        .legal-header h1 {
+            font-size: var(--font-size-4xl);
+            font-weight: var(--font-weight-bold);
+            color: var(--color-text);
+            margin: 0 0 16px 0;
+            background: linear-gradient(135deg, var(--color-text) 0%, var(--color-primary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .legal-header p {
+            font-size: var(--font-size-lg);
+            color: var(--color-text-secondary);
+            margin: 0;
+        }
+
+        .legal-navigation {
+            background: var(--color-warm-white);
+            border-bottom: 1px solid var(--color-border);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow-xs);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--color-primary);
+            text-decoration: none;
+            font-weight: var(--font-weight-medium);
+            padding: 12px 24px;
+            border-radius: var(--radius-base);
+            background: var(--color-secondary);
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            background: var(--color-primary);
+            color: white;
+            transform: translateY(-1px);
+        }
+
+        .page-navigation {
+            display: flex;
+            gap: 16px;
+        }
+
+        .nav-anchor {
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            font-size: var(--font-size-sm);
+            font-weight: var(--font-weight-medium);
+            padding: 8px 16px;
+            border-radius: var(--radius-sm);
+            transition: all 0.3s ease;
+        }
+
+        .nav-anchor:hover {
+            color: var(--color-primary);
+            background: var(--color-secondary);
+        }
+
+        .legal-main {
+            background: var(--color-background);
+            padding: 40px 0 80px;
+        }
+
+        .legal-content {
+            display: grid;
+            gap: 40px;
+        }
+
+        .legal-section {
+            background: var(--color-warm-white);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-medium);
+            overflow: hidden;
+            border: 1px solid var(--color-border);
+        }
+
+        .section-header {
+            background: var(--gradient-accent);
+            padding: 32px 40px;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .section-header h2 {
+            font-size: var(--font-size-3xl);
+            font-weight: var(--font-weight-bold);
+            color: var(--color-text);
+            margin: 0 0 8px 0;
+        }
+
+        .section-header p {
+            font-size: var(--font-size-base);
+            color: var(--color-text-secondary);
+            margin: 0;
+        }
+
+        .section-content {
+            padding: 40px;
+        }
+
+        .subsection {
+            margin-bottom: 32px;
+        }
+
+        .subsection:last-child {
+            margin-bottom: 0;
+        }
+
+        .subsection h3 {
+            font-size: var(--font-size-xl);
+            font-weight: var(--font-weight-semibold);
+            color: var(--color-text);
+            margin: 0 0 16px 0;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--color-accent);
+        }
+
+        .subsection h4 {
+            font-size: var(--font-size-lg);
+            font-weight: var(--font-weight-medium);
+            color: var(--color-text);
+            margin: 24px 0 12px 0;
+        }
+
+        .subsection p {
+            font-size: var(--font-size-base);
+            line-height: 1.7;
+            color: var(--color-text-secondary);
+            margin: 0 0 16px 0;
+        }
+
+        .subsection ul {
+            margin: 0 0 16px 0;
+            padding-left: 24px;
+        }
+
+        .subsection li {
+            font-size: var(--font-size-base);
+            line-height: 1.6;
+            color: var(--color-text-secondary);
+            margin-bottom: 8px;
+        }
+
+        .highlight-box {
+            background: var(--color-accent-light);
+            border: 1px solid var(--color-accent);
+            border-left: 4px solid var(--color-primary);
+            border-radius: var(--radius-base);
+            padding: 24px;
+            margin: 24px 0;
+        }
+
+        .highlight-box h4 {
+            color: var(--color-text);
+            margin-top: 0;
+        }
+
+        .contact-section {
+            background: var(--color-secondary);
+            border-radius: var(--radius-base);
+            padding: 24px;
+            margin: 32px 0;
+        }
+
+        .contact-section h4 {
+            color: var(--color-text);
+            margin-top: 0;
+        }
+
+        .contact-info {
+            display: grid;
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: var(--font-size-base);
+            color: var(--color-text-secondary);
+        }
+
+        .contact-item a {
+            color: var(--color-primary);
+            text-decoration: none;
+        }
+
+        .contact-item a:hover {
+            text-decoration: underline;
+        }
+
+        .effective-date {
+            text-align: center;
+            color: var(--color-text-secondary);
+            font-style: italic;
+            margin: 40px 0 0 0;
+            padding: 24px;
+            border-top: 1px solid var(--color-border);
+            background: var(--color-secondary);
+            border-radius: var(--radius-base);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .legal-header {
+                padding: 40px 0 30px;
+            }
+
+            .legal-header h1 {
+                font-size: var(--font-size-3xl);
+            }
+
+            .nav-content {
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            .page-navigation {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .section-content {
+                padding: 24px;
+            }
+
+            .section-header {
+                padding: 24px;
+            }
+
+            .subsection h3 {
+                font-size: var(--font-size-lg);
+            }
+
+            .contact-info {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .legal-main {
+                padding: 20px 0 40px;
+            }
+
+            .section-content {
+                padding: 20px;
+            }
+
+            .section-header {
+                padding: 20px;
+            }
+
+            .highlight-box {
+                padding: 16px;
+                margin: 16px 0;
+            }
+
+            .contact-section {
+                padding: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Legal Page Header -->
+    <header class="legal-header">
+        <div class="container">
+            <h1>Brush Concierge</h1>
+            <p>Professional Makeup Brush Cleaning Service - Legal Information</p>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="legal-navigation">
+        <div class="container">
+            <div class="nav-content">
+                <a href="index.html" class="back-link">
+                    ← Back to Home
+                </a>
+                <div class="page-navigation">
+                    <a href="#terms" class="nav-anchor">Terms of Service</a>
+                    <a href="#privacy" class="nav-anchor">Privacy Policy</a>
+                    <a href="#contact" class="nav-anchor">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="legal-main">
+        <div class="container">
+            <div class="legal-content">
+                <!-- Terms of Service Section -->
+                <section id="terms" class="legal-section">
+                    <div class="section-header">
+                        <h2>Terms of Service</h2>
+                        <p>Please read these terms carefully before using our service</p>
+                    </div>
+                    
+                    <div class="section-content">
+                        <div class="subsection">
+                            <h3>1. Service Description</h3>
+                            <p>Brush Concierge provides professional makeup brush cleaning services through a monthly subscription model. Our service includes:</p>
+                            <ul>
+                                <li>Professional cleaning of up to 20 makeup brushes per monthly subscription cycle</li>
+                                <li>Free shipping both ways within the United States</li>
+                                <li>5-7 business day turnaround time from receipt to return shipment</li>
+                                <li>Use of professional-grade cleaning solutions and sanitization processes</li>
+                                <li>Quality inspection and basic brush maintenance</li>
+                            </ul>
+                            
+                            <div class="highlight-box">
+                                <h4>Service Limitations</h4>
+                                <p>Our service is limited to makeup brushes only. We do not clean sponges, beauty blenders, or other makeup tools. Brushes must be in reasonable condition and suitable for professional cleaning.</p>
+                            </div>
+                        </div>
+
+                        <div class="subsection">
+                            <h3>2. Subscription Terms and Billing</h3>
+                            
+                            <h4>2.1 Subscription Fee</h4>
+                            <p>The monthly subscription fee is $19.99, charged automatically on your subscription anniversary date each month. Payment is processed securely through Stripe, our trusted payment processor.</p>
+                            
+                            <h4>2.2 Automatic Renewal</h4>
+                            <p>Your subscription will automatically renew each month unless cancelled at least 24 hours before your next billing date. You will be charged the then-current subscription fee for each renewal period.</p>
+                            
+                            <h4>2.3 Payment Methods</h4>
+                            <p>We accept major credit cards, debit cards, and digital payment methods processed through Stripe. You are responsible for maintaining current and valid payment information in your account.</p>
+                            
+                            <h4>2.4 Failed Payments</h4>
+                            <p>If a payment fails, we will attempt to process payment up to 3 times over a 7-day period. If payment continues to fail, your subscription may be suspended until payment is successful.</p>
+                        </div>
+
+                        <div class="subsection">
+                            <h3>3. Shipping and Handling</h3>
+                            
+                            <h4>3.1 Shipping Process</h4>
+                            <p>We provide prepaid shipping labels for sending your brushes to our facility and returning them to you. You are responsible for securely packaging your brushes using the materials and instructions provided.</p>
+                            
+                            <h4>3.2 Turnaround Time</h4>
+                            <p>Our standard turnaround time is 5-7 business days from when we receive your brushes to when we ship them back. This timeframe may be extended during peak periods, holidays, or unforeseen circumstances.</p>
+                            
+                            <h4>3.3 Shipping Restrictions</h4>
+                            <p>Our service is currently available only within the United States. We ship to all 50 states but cannot ship to P.O. boxes for return shipments.</p>
+                            
+                            <h4>3.4 Lost or Damaged Items</h4>
+                            <p>While we take every precaution to handle your brushes with care, Brush Concierge's liability for lost or damaged brushes is limited to $50 per brush, up to a maximum of $200 per shipment, except in cases of gross negligence.</p>
+                        </div>
+
+                        <div class="subsection">
+                            <h3>4. User Responsibilities</h3>
+                            
+                            <h4>4.1 Brush Condition</h4>
+                            <p>You are responsible for ensuring that brushes sent for cleaning are in reasonable condition. We reserve the right to refuse service for brushes that are:</p>
+                            <ul>
+                                <li>Excessively damaged or beyond repair</li>
+                                <li>Contaminated with harmful substances</li>
+                                <li>Fake or counterfeit products</li>
+                                <li>Not makeup brushes (tools, sponges, etc.)</li>
+                            </ul>
+                            
+                            <h4>4.2 Accurate Information</h4>
+                            <p>You must provide accurate shipping and contact information. We are not responsible for delays or lost packages due to incorrect address information.</p>
+                            
+                            <h4>4.3 Prohibited Use</h4>
+                            <p>You may not use our service for commercial resale purposes or on behalf of third parties without explicit written consent.</p>
+                        </div>
+
+                        <div class="subsection">
+                            <h3>5. Cancellation and Refund Policy</h3>
+                            
+                            <h4>5.1 Cancellation</h4>
+                            <p>You may cancel your subscription at any time through your account dashboard or by contacting customer service. Cancellations take effect at the end of your current billing cycle.</p>
+                            
+                            <h4>5.2 Refunds</h4>
+                            <p>We offer a 30-day money-back guarantee for first-time subscribers who are not satisfied with our service. Refund requests must be submitted within 30 days of your first order completion.</p>
+                            
+                            <h4>5.3 No Partial Refunds</h4>
+                            <p>No partial refunds are provided for unused portions of subscription periods, except as required by law.</p>
+                        </div>
+
+                        <div class="subsection">
+                            <h3>6. Limitation of Liability</h3>
+                            <p>To the maximum extent permitted by law, Brush Concierge's total liability for any claims related to our service shall not exceed the amount you paid for the service during the 12 months preceding the claim.</p>
+                            
+                            <div class="highlight-box">
+                                <h4>Important Disclaimer</h4>
+                                <p>Our service is provided "as is" without warranties of any kind. We disclaim all warranties, express or implied, including warranties of merchantability and fitness for a particular purpose.</p>
+                            </div>
+                        </div>
+
+                        <div class="subsection">
+                            <h3>7. Governing Law</h3>
+                            <p>These terms are governed by the laws of the state where Brush Concierge is incorporated, without regard to conflict of law principles. Any disputes will be resolved through binding arbitration.</p>
+                        </div>
+
+                        <div class="subsection">
+                            <h3>8. Changes to Terms</h3>
+                            <p>We reserve the right to modify these terms at any time. We will notify subscribers of material changes via email at least 30 days before they take effect. Continued use of our service after changes constitutes acceptance of the new terms.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Privacy Policy Section -->
+                <section id="privacy" class="legal-section">
+                    <div class="section-header">
+                        <h2>Privacy Policy</h2>
+                        <p>Your privacy is important to us. This policy explains how we collect, use, and protect your information.</p>
+                    </div>
+                    
+                    <div class="section-content">
+                        <div class="subsection">
+                            <h3>1. Information We Collect</h3>
+                            
+                            <h4>1.1 Personal Information</h4>
+                            <p>We collect information you provide directly to us, including:</p>
+                            <ul>
+                                <li>Name, email address, and phone number</li>
+                                <li>Shipping and billing addresses</li>
+                                <li>Payment information (processed securely by Stripe)</li>
+                                <li>Account credentials and preferences</li>
+                                <li>Customer service communications</li>
+                            </ul>
+                            
+                            <h4>1.2 Automatically Collected Information</h4>
+                            <ul>
+                                <li>Website usage data and analytics</li>
+                                <li>Device information and IP addresses</li>
+                                <li>Cookies and similar tracking technologies</li>
+                                <li>Email engagement metrics</li>
+                            </ul>
+                        </div>
+
+                        <div class="subsection">
+                            <h3>2. How We Use Your Information</h3>
+                            <p>We use your information to:</p>
+                            <ul>
+                                <li>Process and fulfill your subscription orders</li>
+                                <li>Communicate about your account and service updates</li>
+                                <li>Process payments and prevent fraud</li>
+                                <li>Improve our website and services</li>
+                                <li>Send marketing communications (with your consent)</li>
+                                <li>Comply with legal obligations</li>
+                            </ul>
+                        </div>
+
+                        <div class="subsection">
+                            <h3>3. Payment Information Security</h3>
+                            
+                            <div class="highlight-box">
+                                <h4>Stripe Integration</h4>
+                                <p>All payment processing is handled by Stripe, a PCI DSS Level 1 certified payment processor. We do not store your credit card information on our servers. Stripe maintains the highest security standards for payment data protection.</p>
+                            </div>
+                            
+                            <p>Payment information is encrypted and transmitted securely using industry-standard SSL/TLS protocols. For more information about Stripe's security practices, visit their privacy policy at stripe.com/privacy.</p>
+                        </div>
+
+                        <div class="subsection">
+                            <h3>4. Information Sharing</h3>
+                            <p>We may share your information with:</p>
+                            <ul>
+                                <li><strong>Service Providers:</strong> Including Stripe for payment processing, shipping companies, and email service providers</li>
+                                <li><strong>Business Transfers:</strong> In connection with any merger, sale of assets, or acquisition</li>
+                                <li><strong>Legal Requirements:</strong> When required by law or to protect our rights and safety</li>
+                                <li><strong>Consent:</strong> With your explicit permission for other purposes</li>
+                            </ul>
+                            
+                            <p>We do not sell, rent, or trade your personal information to third parties for their marketing purposes.</p>
+                        </div>
+
+                        <div class="subsection">
+                            <h3>5. Data Retention</h3>
+                            <p>We retain your information for as long as necessary to provide our services and comply with legal obligations:</p>
+                            <ul>
+                                <li>Account information: While your account is active plus 3 years</li>
+                                <li>Payment records: 7 years for tax and accounting purposes</li>
+                                <li>Marketing data: Until you unsubscribe or object</li>
+                                <li>Website analytics: 26 months maximum</li>
+                            </ul>
+                        </div>
+
+                        <div class="subsection">
+                            <h3>6. Your Rights and Choices</h3>
+                            
+                            <h4>6.1 Account Access</h4>
+                            <p>You may access, update, or delete your account information at any time through your account dashboard.</p>
+                            
+                            <h4>6.2 Marketing Communications</h4>
+                            <p>You can opt out of marketing emails by clicking the unsubscribe link in any email or by updating your preferences in your account.</p>
+                            
+                            <h4>6.3 Cookies</h4>
+                            <p>You can control cookie preferences through your browser settings, though this may affect website functionality.</p>
+                            
+                            <h4>6.4 Data Rights</h4>
+                            <p>Depending on your location, you may have additional rights including:</p>
+                            <ul>
+                                <li>Right to access your personal data</li>
+                                <li>Right to correct inaccurate information</li>
+                                <li>Right to delete your data</li>
+                                <li>Right to restrict processing</li>
+                                <li>Right to data portability</li>
+                            </ul>
+                        </div>
+
+                        <div class="subsection">
+                            <h3>7. Security Measures</h3>
+                            <p>We implement appropriate technical and organizational security measures to protect your information:</p>
+                            <ul>
+                                <li>SSL/TLS encryption for data transmission</li>
+                                <li>Secure data storage with access controls</li>
+                                <li>Regular security assessments and updates</li>
+                                <li>Employee training on data protection</li>
+                                <li>Incident response procedures</li>
+                            </ul>
+                        </div>
+
+                        <div class="subsection">
+                            <h3>8. Third-Party Services</h3>
+                            <p>Our website and services integrate with third-party providers:</p>
+                            <ul>
+                                <li><strong>Stripe:</strong> Payment processing (stripe.com/privacy)</li>
+                                <li><strong>Google Analytics:</strong> Website analytics (policies.google.com/privacy)</li>
+                                <li><strong>Email Services:</strong> For transactional and marketing communications</li>
+                            </ul>
+                            <p>These services have their own privacy policies governing their use of your information.</p>
+                        </div>
+
+                        <div class="subsection">
+                            <h3>9. International Transfers</h3>
+                            <p>Your information may be transferred to and processed in countries other than your own. We ensure appropriate safeguards are in place for such transfers in compliance with applicable data protection laws.</p>
+                        </div>
+
+                        <div class="subsection">
+                            <h3>10. Children's Privacy</h3>
+                            <p>Our service is not directed to children under 13. We do not knowingly collect personal information from children under 13. If we learn we have collected such information, we will delete it immediately.</p>
+                        </div>
+
+                        <div class="subsection">
+                            <h3>11. Privacy Policy Updates</h3>
+                            <p>We may update this privacy policy from time to time. We will notify you of material changes by email or through our website. The updated policy will indicate the effective date of changes.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Contact Information -->
+                <section id="contact" class="legal-section">
+                    <div class="section-header">
+                        <h2>Contact Information</h2>
+                        <p>Questions about these terms or our privacy practices?</p>
+                    </div>
+                    
+                    <div class="section-content">
+                        <div class="contact-section">
+                            <h4>Get in Touch</h4>
+                            <p>If you have any questions about these Terms of Service or our Privacy Policy, please contact us:</p>
+                            
+                            <div class="contact-info">
+                                <div class="contact-item">
+                                    <span>📧</span>
+                                    <span>Email: <a href="mailto:legal@brushconcierge.com">legal@brushconcierge.com</a></span>
+                                </div>
+                                <div class="contact-item">
+                                    <span>💬</span>
+                                    <span>Customer Support: <a href="mailto:support@brushconcierge.com">support@brushconcierge.com</a></span>
+                                </div>
+                                <div class="contact-item">
+                                    <span>📞</span>
+                                    <span>Phone: 1-800-BRUSHES (1-800-278-7437)</span>
+                                </div>
+                                <div class="contact-item">
+                                    <span>🕐</span>
+                                    <span>Business Hours: Monday-Friday, 9:00 AM - 6:00 PM EST</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="effective-date">
+                            <p><strong>Effective Date:</strong> January 21, 2025</p>
+                            <p>Last Updated: January 21, 2025</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer style="background: var(--color-warm-white); border-top: 1px solid var(--color-border); padding: 40px 0; text-align: center;">
+        <div class="container">
+            <p style="color: var(--color-text-secondary); margin: 0; font-size: var(--font-size-sm);">
+                © 2025 Brush Concierge. All rights reserved. | 
+                <a href="index.html" style="color: var(--color-primary); text-decoration: none;">Return to Home</a>
+            </p>
+        </div>
+    </footer>
+</body>
+</html>
