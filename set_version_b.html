@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Setting Version B</title>
+    <script src="router.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Force version B
+            window.bcRouter.setVersion('B');
+            // Redirect to version_b/index.html
+            window.location.href = 'version_b/index.html';
+        });
+    </script>
+</head>
+<body>
+    <h1>Setting to Version B...</h1>
+    <p>Please wait while we redirect you.</p>
+</body>
+</html>
