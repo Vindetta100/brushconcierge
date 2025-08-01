@@ -98,6 +98,37 @@ Easy to add:
 - Stripe Analytics
 - Custom conversion tracking
 
+## 🧪 A/B/C Testing
+
+### Setup
+- A/B/C testing implemented with 33/33/33 split
+- Test different homepage versions via router
+- Persistence via localStorage
+
+### Running the Server
+```bash
+# Start local server
+python3 -m http.server 8000
+
+# Or with Node.js
+npx http-server -p 8000
+```
+
+### Version Links
+- **Random Assignment**: http://localhost:8000/
+- **Version A (Original)**: http://localhost:8000/set_version_a.html
+- **Version B**: http://localhost:8000/set_version_b.html
+- **Version C**: http://localhost:8000/set_version_c.html
+
+### Manual Testing
+```javascript
+// In browser console:
+bcRouter.setVersion('A'); // Force Version A
+bcRouter.setVersion('B'); // Force Version B
+bcRouter.setVersion('C'); // Force Version C
+bcRouter.resetVersion(); // Reset for random assignment
+```
+
 ## 🆘 Support
 
 1. Check [DEPLOYMENT_GUIDE.md](./DEPLOYMENT_GUIDE.md)
