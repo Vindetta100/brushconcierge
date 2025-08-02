@@ -114,13 +114,14 @@ python3 -m http.server 8000
 npx http-server -p 8000
 ```
 
-### Version Links
-- **Random Assignment**: http://localhost:8000/
-- **Version A (Classic)**: http://localhost:8000/classic/
-- **Version B (Premium)**: http://localhost:8000/premium/
-- **Version C (Concierge)**: http://localhost:8000/concierge/
+### Live Version Links
+- **Random Assignment**: https://brushconcierge.com/
+- **Version A (Classic)**: https://brushconcierge.com/classic
+- **Version B (Premium)**: https://brushconcierge.com/premium
+- **Version C (Concierge)**: https://brushconcierge.com/concierge
 
 ### Local Testing Links
+- **Random Assignment**: http://localhost:8000/
 - **Version A (Classic)**: http://localhost:8000/set_version_a.html
 - **Version B (Premium)**: http://localhost:8000/set_version_b.html
 - **Version C (Concierge)**: http://localhost:8000/set_version_c.html
