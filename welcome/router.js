@@ -43,13 +43,13 @@ function redirectToAssignedVersion(version) {
     // Track the page view for analytics
     trackPageView(version);
     
-    // Redirect to the appropriate version using production URLs
+    // Redirect to the appropriate version
     if (version === 'A') {
-        window.location.href = '/';
+        window.location.href = 'index.html';
     } else if (version === 'B') {
-        window.location.href = '/version-b/';
+        window.location.href = 'version_b/index.html';
     } else {
-        window.location.href = '/version-c/';
+        window.location.href = 'version_c/index.html';
     }
 }
 

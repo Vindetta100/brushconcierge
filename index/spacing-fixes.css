@@ -1,0 +1,252 @@
+/* 
+ * Brush Concierge Spacing Fixes
+ * This file addresses spacing issues throughout the site
+ */
+
+/* Global spacing normalization */
+section {
+  padding: 80px 0;
+  margin: 0;
+}
+
+/* Container consistency */
+.container {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+/* Consistent section spacing */
+.section__title {
+  margin-bottom: 40px;
+}
+
+/* Hero section spacing fixes */
+.hero {
+  padding-top: 120px;
+  padding-bottom: 80px;
+  min-height: auto;
+}
+
+.hero .container {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  align-items: center;
+}
+
+.logo {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-size: 36px;
+}
+
+.hero__content {
+  flex: 1;
+  padding-right: 30px;
+  text-align: left;
+  margin-bottom: 0;
+}
+
+.hero__visual {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero__headline {
+  font-size: 32px;
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+
+.hero__subheadline {
+  font-size: 18px;
+  margin-bottom: 20px;
+  line-height: 1.4;
+}
+
+.hero__trust-indicators {
+  margin-bottom: 25px;
+}
+
+.hero__image {
+  max-width: 100%;
+  border-radius: 15px;
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding-top: 100px;
+    padding-bottom: 60px;
+    text-align: center;
+  }
+
+  .hero .container {
+    flex-direction: column;
+  }
+
+  .hero__content {
+    padding-right: 0;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  .hero__headline {
+    font-size: 28px;
+  }
+  
+  .hero__subheadline {
+    font-size: 16px;
+  }
+}
+
+/* Problem/Solution section spacing */
+.comparison {
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+.comparison__item {
+  padding: 15px;
+}
+
+.comparison__image {
+  margin-bottom: 20px;
+}
+
+/* Benefits section spacing */
+.benefits__grid {
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.benefit-card {
+  padding: 30px 20px;
+}
+
+/* How It Works section spacing */
+.steps {
+  gap: 30px;
+  margin: 40px 0;
+}
+
+.step::after {
+  right: -20px;
+}
+
+/* Pricing section spacing */
+.pricing__tiers {
+  gap: 25px;
+}
+
+.pricing__card {
+  padding: 40px 30px;
+  margin: 30px 0;
+}
+
+.pricing__feature {
+  padding: 8px 0;
+}
+
+/* Testimonial spacing */
+.testimonials {
+  gap: 30px;
+  margin: 40px 0;
+}
+
+.testimonial {
+  padding: 30px;
+}
+
+/* Trust badges spacing */
+.trust-badges {
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+/* FAQ section spacing */
+.faq__item {
+  margin-bottom: 15px;
+}
+
+.faq__question {
+  padding: 15px;
+}
+
+.faq__answer {
+  padding: 0 15px 15px;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 992px) {
+  section {
+    padding: 60px 0;
+  }
+  
+  .section__title {
+    margin-bottom: 30px;
+  }
+  
+  .comparison {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  
+  .benefits__grid {
+    grid-template-columns: 1fr;
+    max-width: 450px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .steps {
+    grid-template-columns: 1fr;
+    max-width: 450px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .step::after {
+    content: '↓';
+    position: absolute;
+    right: 50%;
+    top: auto;
+    bottom: -30px;
+    transform: translateX(50%);
+  }
+  
+  .testimonials {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  section {
+    padding: 40px 0;
+  }
+  
+  .hero {
+    padding: 40px 0 50px;
+    text-align: center;
+  }
+  
+  .hero__headline {
+    font-size: 1.8rem;
+  }
+  
+  .hero__subheadline {
+    font-size: 1rem;
+  }
+  
+  .section__title {
+    font-size: 1.8rem;
+  }
+  
+  .benefit-card,
+  .testimonial,
+  .pricing__card {
+    padding: 20px 15px;
+  }
+}
