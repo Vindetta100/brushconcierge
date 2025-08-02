@@ -120,6 +120,11 @@ npx http-server -p 8000
 - **Version B (Premium)**: http://localhost:8000/premium/
 - **Version C (Concierge)**: http://localhost:8000/concierge/
 
+### Local Testing Links
+- **Version A (Classic)**: http://localhost:8000/set_version_a.html
+- **Version B (Premium)**: http://localhost:8000/set_version_b.html
+- **Version C (Concierge)**: http://localhost:8000/set_version_c.html
+
 ### Manual Testing
 ```javascript
 // In browser console:
