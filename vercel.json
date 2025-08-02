@@ -13,6 +13,18 @@
   },
   "rewrites": [
     {
+      "source": "/classic",
+      "destination": "/classic/index.html"
+    },
+    {
+      "source": "/premium",
+      "destination": "/premium/index.html"
+    },
+    {
+      "source": "/concierge",
+      "destination": "/concierge/index.html"
+    },
+    {
       "source": "/api/(.*)",
       "destination": "/api/$1"
     },

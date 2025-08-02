@@ -116,9 +116,9 @@ npx http-server -p 8000
 
 ### Version Links
 - **Random Assignment**: http://localhost:8000/
-- **Version A (Original)**: http://localhost:8000/set_version_a.html
-- **Version B**: http://localhost:8000/set_version_b.html
-- **Version C**: http://localhost:8000/set_version_c.html
+- **Version A (Classic)**: http://localhost:8000/classic/
+- **Version B (Premium)**: http://localhost:8000/premium/
+- **Version C (Concierge)**: http://localhost:8000/concierge/
 
 ### Manual Testing
 ```javascript
@@ -139,4 +139,3 @@ bcRouter.resetVersion(); // Reset for random assignment
 ---
 
 **Ready to launch your subscription business? Deploy now! 🚀**
-
