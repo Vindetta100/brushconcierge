@@ -17,12 +17,24 @@
       "destination": "/classic/index.html"
     },
     {
+      "source": "/classic/(.*)",
+      "destination": "/classic/$1"
+    },
+    {
       "source": "/premium",
       "destination": "/premium/index.html"
     },
     {
+      "source": "/premium/(.*)",
+      "destination": "/premium/$1"
+    },
+    {
       "source": "/concierge",
       "destination": "/concierge/index.html"
+    },
+    {
+      "source": "/concierge/(.*)",
+      "destination": "/concierge/$1"
     },
     {
       "source": "/api/(.*)",
