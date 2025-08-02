@@ -11,34 +11,25 @@
       "maxDuration": 30
     }
   },
-  "rewrites": [
+  "routes": [
     {
-      "source": "/classic",
-      "destination": "/classic/index.html"
+      "handle": "filesystem"
     },
     {
-      "source": "/classic/(.*)",
-      "destination": "/classic/$1"
+      "src": "/classic",
+      "dest": "/classic/index.html"
     },
     {
-      "source": "/premium",
-      "destination": "/premium/index.html"
+      "src": "/premium",
+      "dest": "/premium/index.html"
     },
     {
-      "source": "/premium/(.*)",
-      "destination": "/premium/$1"
+      "src": "/concierge",
+      "dest": "/concierge/index.html"
     },
     {
-      "source": "/concierge",
-      "destination": "/concierge/index.html"
-    },
-    {
-      "source": "/concierge/(.*)",
-      "destination": "/concierge/$1"
-    },
-    {
-      "source": "/api/(.*)",
-      "destination": "/api/$1"
+      "src": "/api/(.*)",
+      "dest": "/api/$1"
     }
   ],
   "headers": [
