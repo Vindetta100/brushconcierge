@@ -11,10 +11,11 @@
 - **2025-08-02**: Updated `README.md` with new version links.
 - **2025-08-02**: Updated `vercel.json` with rewrites for new professional URLs.
 - **2025-08-02**: Removed old testing directories and files.
+- **2025-08-02**: Fixed broken asset paths in `/concierge` pages by using absolute paths.
 
 ## Next Steps
-- Verify all changes and test the new URL structure.
-- Commit changes to the `path-name-change` branch.
+- Monitor Vercel deployment.
+- Verify the fix for the `/concierge` version on the live site.
 
 ## Active Decisions and Considerations
 - Professional URLs (`/classic`, `/premium`, `/concierge`) improve SEO and marketing.

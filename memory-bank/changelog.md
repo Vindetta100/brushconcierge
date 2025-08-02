@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.0.2] - 2025-08-02
+### Fixed
+- Corrected broken asset paths for the `/concierge` version by using absolute paths in `index.html`, `checkout.html`, and `legal.html`.
+
 ## [1.0.1] - 2025-08-02
 ### Changed
 - Renamed A/B/C testing directories to `classic`, `premium`, and `concierge`.
