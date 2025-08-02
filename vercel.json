@@ -11,25 +11,22 @@
       "maxDuration": 30
     }
   },
-  "routes": [
+  "rewrites": [
     {
-      "handle": "filesystem"
+      "source": "/classic",
+      "destination": "/classic/index.html"
     },
     {
-      "src": "/classic",
-      "dest": "/classic/index.html"
+      "source": "/premium",
+      "destination": "/premium/index.html"
     },
     {
-      "src": "/premium",
-      "dest": "/premium/index.html"
+      "source": "/concierge",
+      "destination": "/concierge/index.html"
     },
     {
-      "src": "/concierge",
-      "dest": "/concierge/index.html"
-    },
-    {
-      "src": "/api/(.*)",
-      "dest": "/api/$1"
+      "source": "/api/(.*)",
+      "destination": "/api/$1"
     }
   ],
   "headers": [
@@ -68,24 +65,6 @@
         {
           "key": "Access-Control-Allow-Headers",
           "value": "Content-Type, Authorization"
-        }
-      ]
-    },
-    {
-      "source": "/style.css",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=31536000, immutable"
-        }
-      ]
-    },
-    {
-      "source": "/app.js",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=31536000, immutable"
         }
       ]
     }
