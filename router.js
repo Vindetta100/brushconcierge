@@ -57,6 +57,12 @@ function redirectToAssignedVersion(version) {
 function initializeRouter() {
     console.log('[Router] Initializing A/B/C testing router');
     
+    // Skip initialization on version setter pages to prevent race condition
+    if (window.location.pathname.includes('set_version_')) {
+        console.log('[Router] Skipping initialization on version setter page');
+        return;
+    }
+    
     // Check if user already has a version assigned
     const assignedVersion = localStorage.getItem('bc_homepage_version');
     
@@ -65,9 +71,8 @@ function initializeRouter() {
         console.log(`[Router] User has assigned version: ${assignedVersion}`);
         redirectToAssignedVersion(assignedVersion);
     } else {
-        // New user, randomly assign a version
-        const random = Math.random();
-        const newVersion = random < 0.33 ? 'A' : (random < 0.66 ? 'B' : 'C');
+        // New user, assign to Concierge version (Version C)
+        const newVersion = 'C';
         
         console.log(`[Router] Assigning new version to user: ${newVersion}`);
         localStorage.setItem('bc_homepage_version', newVersion);
