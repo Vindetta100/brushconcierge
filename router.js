@@ -83,6 +83,8 @@ function initializeRouter() {
 // Initialize the router when the DOM is fully loaded
 document.addEventListener('DOMContentLoaded', initializeRouter);
 
+// This comment is added to force a Vercel redeployment.
+
 // Export functions for external use (e.g., for testing or manual triggering)
 window.bcRouter = {
     setVersion: function(version) {
