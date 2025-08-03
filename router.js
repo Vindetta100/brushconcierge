@@ -63,21 +63,12 @@ function initializeRouter() {
         return;
     }
     
-    // Check if user already has a version assigned
-    const assignedVersion = localStorage.getItem('bc_homepage_version');
+    // Force all users to Version C for production
+    const newVersion = 'C';
     
-    if (assignedVersion) {
-        // User already has an assigned version
-        console.log(`[Router] User has assigned version: ${assignedVersion}`);
-        redirectToAssignedVersion(assignedVersion);
-    } else {
-        // New user, assign to Concierge version (Version C)
-        const newVersion = 'C';
-        
-        console.log(`[Router] Assigning new version to user: ${newVersion}`);
-        localStorage.setItem('bc_homepage_version', newVersion);
-        redirectToAssignedVersion(newVersion);
-    }
+    console.log(`[Router] Forcing production version: ${newVersion}`);
+    localStorage.setItem('bc_homepage_version', newVersion);
+    redirectToAssignedVersion(newVersion);
 }
 
 // Initialize the router when the DOM is fully loaded
