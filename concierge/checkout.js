@@ -81,9 +81,8 @@ class CheckoutManager {
         // Update pricing breakdown in the order summary
         const pricingBreakdown = document.querySelector('.order-summary .pricing-breakdown');
         if (pricingBreakdown) {
-            const priceLines = pricingBreakdown.querySelectorAll('.price-line');
-            priceLines[0].querySelector('span:last-child').textContent = `$${tier.price.toFixed(2)}`;
-            priceLines[2].querySelector('.total-amount').textContent = `$${tier.price.toFixed(2)}`;
+            pricingBreakdown.querySelector('.price-line:first-child span:last-child').textContent = `$${tier.price.toFixed(2)}`;
+            pricingBreakdown.querySelector('.total-line .total-amount').textContent = `$${tier.price.toFixed(2)}`;
         }
         
         // Update billing info note
