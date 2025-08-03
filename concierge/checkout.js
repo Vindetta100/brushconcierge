@@ -3,16 +3,114 @@ class CheckoutManager {
     constructor() {
         this.currentStep = 1;
         this.formData = {};
-        
+        this.tierData = {
+            essentials: {
+                name: 'The Essentials',
+                price: 39.00,
+                priceId: 'price_essentials', // Placeholder
+                features: [
+                    '10 brushes (any size)',
+                    'Monthly service',
+                    'Free shipping both ways',
+                    '5-7 day turnaround',
+                    'Pause or cancel anytime'
+                ]
+            },
+            curator: {
+                name: 'The Curator',
+                price: 59.00,
+                priceId: 'price_curator', // Placeholder
+                features: [
+                    '20 brushes (any size)',
+                    'Bi-weekly option available',
+                    'Priority processing',
+                    'Brush conditioning treatment',
+                    'Free shipping both ways'
+                ]
+            },
+            atelier: {
+                name: 'The Atelier',
+                price: 99.00,
+                priceId: 'price_atelier', // Placeholder
+                features: [
+                    'Up to 40 brushes',
+                    'Bi-weekly service available',
+                    'Premium handling & care',
+                    'Priority support',
+                    'Secure, elegant packaging'
+                ]
+            }
+        };
+        this.selectedTier = 'curator'; // Default tier
+
         this.init();
     }
 
     init() {
+        this.initializeTier();
         this.bindEvents();
         this.initializeForm();
         this.updateProgressIndicator();
         this.initializeSummaryToggle();
         this.handleReturnFromStripe();
+    }
+
+    initializeTier() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const tier = urlParams.get('tier');
+        if (tier && this.tierData[tier]) {
+            this.selectedTier = tier;
+        }
+        this.updateOrderSummary();
+    }
+
+    updateOrderSummary() {
+        const tier = this.tierData[this.selectedTier];
+        if (!tier) return;
+
+        // Update service info in the order summary
+        const serviceInfo = document.querySelector('.order-summary .service-info');
+        if (serviceInfo) {
+            serviceInfo.querySelector('h3').textContent = `Brush Concierge Subscription`;
+            const featureList = serviceInfo.querySelector('.service-features');
+            if (featureList) {
+                featureList.innerHTML = tier.features.map(feature => `<li>✓ ${feature}</li>`).join('');
+            }
+        }
+
+        // Update pricing breakdown in the order summary
+        const pricingBreakdown = document.querySelector('.order-summary .pricing-breakdown');
+        if (pricingBreakdown) {
+            const priceLines = pricingBreakdown.querySelectorAll('.price-line');
+            priceLines[0].querySelector('span:last-child').textContent = `$${tier.price.toFixed(2)}`;
+            priceLines[2].querySelector('.total-amount').textContent = `$${tier.price.toFixed(2)}`;
+        }
+        
+        // Update billing info note
+        const billingNote = document.querySelector('.billing-note');
+        if (billingNote) {
+            billingNote.innerHTML = `
+                <strong>First box ships immediately</strong><br>
+                Then billed monthly at $${tier.price.toFixed(2)}
+            `;
+        }
+
+        // Update final total in the review step
+        const finalTotal = document.querySelector('#step3 .final-total');
+        if(finalTotal) {
+            finalTotal.querySelector('.total-price').textContent = `$${tier.price.toFixed(2)}`;
+            finalTotal.querySelector('.recurring span:first-child').textContent = `Then $${tier.price.toFixed(2)}/month`;
+        }
+        
+        // Update subscription details in the review step
+        const reviewDetailsContainer = document.querySelector('#step3 .review-section:nth-of-type(3) .review-content');
+        if(reviewDetailsContainer) {
+            reviewDetailsContainer.innerHTML = `
+                <p><strong>${tier.name}</strong></p>
+                <p>$${tier.price.toFixed(2)}/month • ${tier.features[0]} • Free shipping both ways</p>
+                <p>First box ships within 2-3 business days</p>
+            `;
+        }
     }
 
     handleReturnFromStripe() {
@@ -619,7 +717,10 @@ class CheckoutManager {
     }
 
     collectFormData() {
+        const tier = this.tierData[this.selectedTier];
         return {
+            tier: this.selectedTier,
+            priceId: tier.priceId,
             firstName: document.getElementById('firstName')?.value?.trim() || '',
             lastName: document.getElementById('lastName')?.value?.trim() || '',
             email: document.getElementById('email')?.value?.trim() || '',
