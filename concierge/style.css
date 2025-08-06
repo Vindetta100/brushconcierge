@@ -1153,11 +1153,12 @@ select.form-control {
 
 .trust-badge__icon {
   font-size: 1.5rem;
+  color: var(--color-navy); /* Change icon color for contrast */
 }
 
 .trust-badge__text {
   font-weight: 600;
-  color: var(--color-text);
+  color: white;
 }
 
 /* Waitlist Section */
@@ -1485,8 +1486,8 @@ select.form-control {
 
 /* Trust badge styles */
 .trust-badge {
-  background-color: var(--color-navy);
-  color: white;
+  background-color: var(--color-gold);
+  color: white; /* Ensure text remains white for contrast */
 }
 
 /* Most popular badge */
