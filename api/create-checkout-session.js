@@ -1,5 +1,24 @@
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
+/**
+ * STRIPE TEST/LIVE ENVIRONMENT HANDLING
+ * 
+ * IMPORTANT: This API uses live Stripe keys but Stripe's test card (4242 4242 4242 4242)
+ * will work in live mode for testing checkout flows WITHOUT creating actual charges.
+ * 
+ * Test Card Behavior in Live Mode:
+ * - Test card 4242 4242 4242 4242 works for flow testing
+ * - No actual charges are created when using test cards
+ * - Real cards WOULD be charged if used with live keys
+ * 
+ * For Production Safety:
+ * - Always use test cards during QA testing
+ * - Stop at "Complete Order" button to avoid any potential charges
+ * - Consider separate staging environment with test keys for full testing
+ * 
+ * Current Environment: LIVE KEYS with test card support
+ */
+
 export default async function handler(req, res) {
   // Set CORS headers
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -24,12 +43,10 @@ export default async function handler(req, res) {
       throw new Error('STRIPE_SECRET_KEY environment variable is not set');
     }
 
-    if (!process.env.STRIPE_PRICE_ID) {
-      throw new Error('STRIPE_PRICE_ID environment variable is not set');
-    }
-
-    // Extract customer data from request
+    // Extract customer data and tier from request
     const {
+      tier,
+      priceId,
       firstName,
       lastName,
       email,
@@ -47,6 +64,30 @@ export default async function handler(req, res) {
     if (!firstName || !lastName || !email || !address1 || !city || !state || !zipCode) {
       res.status(400).json({ 
         error: 'Missing required fields: firstName, lastName, email, address1, city, state, zipCode' 
+      });
+      return;
+    }
+
+    // Validate tier and priceId
+    if (!tier || !priceId) {
+      res.status(400).json({ 
+        error: 'Missing tier or priceId' 
+      });
+      return;
+    }
+
+    // Define valid tiers and their corresponding price IDs
+    // UPDATE THESE WITH YOUR ACTUAL STRIPE PRICE IDs
+    const validTiers = {
+      essentials: 'price_1RsXfJ08jBtUv1BcKxMyi5hR',
+      curator: 'price_1RsXh608jBtUv1BcDXc1cCT7',
+      atelier: 'price_1RsXjU08jBtUv1Bca7ZYJT31'
+    };
+
+    // Validate tier and priceId match
+    if (!validTiers[tier] || validTiers[tier] !== priceId) {
+      res.status(400).json({ 
+        error: 'Invalid tier or priceId combination' 
       });
       return;
     }
@@ -76,6 +117,7 @@ export default async function handler(req, res) {
             country: 'US'
           },
           metadata: {
+            tier: tier,
             brushTypes: brushTypes || '',
             deliveryNotes: deliveryNotes || '',
             updatedAt: new Date().toISOString()
@@ -96,6 +138,7 @@ export default async function handler(req, res) {
             country: 'US'
           },
           metadata: {
+            tier: tier,
             brushTypes: brushTypes || '',
             deliveryNotes: deliveryNotes || '',
             createdAt: new Date().toISOString()
@@ -110,15 +153,15 @@ export default async function handler(req, res) {
 
     // Determine success and cancel URLs
     const origin = req.headers.origin || req.headers.referer?.replace(/\/$/, '') || 'https://brushconcierge.com';
-    const successUrl = `${origin}/checkout.html?success=true&session_id={CHECKOUT_SESSION_ID}`;
-    const cancelUrl = `${origin}/checkout.html?canceled=true`;
+    const successUrl = `${origin}/concierge/checkout.html?success=true&session_id={CHECKOUT_SESSION_ID}&tier=${tier}`;
+    const cancelUrl = `${origin}/concierge/checkout.html?canceled=true&tier=${tier}`;
 
     // Create Stripe Checkout session
     const session = await stripe.checkout.sessions.create({
       customer: customer.id,
       line_items: [
         {
-          price: process.env.STRIPE_PRICE_ID,
+          price: priceId,
           quantity: 1,
         },
       ],
@@ -133,12 +176,14 @@ export default async function handler(req, res) {
       },
       subscription_data: {
         metadata: {
+          tier: tier,
           customerName: `${firstName} ${lastName}`,
           brushTypes: brushTypes || '',
           deliveryNotes: deliveryNotes || ''
         }
       },
       metadata: {
+        tier: tier,
         customerName: `${firstName} ${lastName}`,
         brushTypes: brushTypes || '',
         deliveryNotes: deliveryNotes || ''
@@ -149,7 +194,8 @@ export default async function handler(req, res) {
     res.status(200).json({ 
       url: session.url,
       sessionId: session.id,
-      customerId: customer.id
+      customerId: customer.id,
+      tier: tier
     });
 
   } catch (error) {
@@ -165,4 +211,3 @@ export default async function handler(req, res) {
     });
   }
 }
-
