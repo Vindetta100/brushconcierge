@@ -7,7 +7,7 @@ class CheckoutManager {
             essentials: {
                 name: 'The Essentials',
                 price: 39.00,
-                priceId: 'price_essentials', // Placeholder
+                priceId: 'price_1RsXfJ08jBtUv1BcKxMyi5hR', // UPDATE THIS WITH YOUR STRIPE PRICE ID
                 features: [
                     '10 brushes (any size)',
                     'Monthly service',
@@ -19,7 +19,7 @@ class CheckoutManager {
             curator: {
                 name: 'The Curator',
                 price: 59.00,
-                priceId: 'price_curator', // Placeholder
+                priceId: 'price_1RsXh608jBtUv1BcDXc1cCT7', // UPDATE THIS WITH YOUR STRIPE PRICE ID
                 features: [
                     '20 brushes (any size)',
                     'Bi-weekly option available',
@@ -31,7 +31,7 @@ class CheckoutManager {
             atelier: {
                 name: 'The Atelier',
                 price: 99.00,
-                priceId: 'price_atelier', // Placeholder
+                priceId: 'price_1RsXjU08jBtUv1Bca7ZYJT31', // UPDATE THIS WITH YOUR STRIPE PRICE ID
                 features: [
                     'Up to 40 brushes',
                     'Bi-weekly service available',
@@ -71,7 +71,7 @@ class CheckoutManager {
         // Update service info in the order summary
         const serviceInfo = document.querySelector('.order-summary .service-info');
         if (serviceInfo) {
-            serviceInfo.querySelector('h3').textContent = `Brush Concierge Subscription`;
+            serviceInfo.querySelector('h3').textContent = `${tier.name} Subscription`;
             const featureList = serviceInfo.querySelector('.service-features');
             if (featureList) {
                 featureList.innerHTML = tier.features.map(feature => `<li>✓ ${feature}</li>`).join('');
@@ -79,14 +79,16 @@ class CheckoutManager {
         }
 
         // Update pricing breakdown in the order summary
-        const pricingBreakdown = document.querySelector('.order-summary .pricing-breakdown');
-        if (pricingBreakdown) {
-            pricingBreakdown.querySelector('.price-line:first-child span:last-child').textContent = `$${tier.price.toFixed(2)}`;
-            pricingBreakdown.querySelector('.total-line .total-amount').textContent = `$${tier.price.toFixed(2)}`;
-        }
+        const monthlyPrice = document.getElementById('monthlyPrice');
+        const totalAmount = document.getElementById('totalAmount');
+        const billingNote = document.getElementById('billingNote');
         
-        // Update billing info note
-        const billingNote = document.querySelector('.billing-note');
+        if (monthlyPrice) {
+            monthlyPrice.textContent = `$${tier.price.toFixed(2)}`;
+        }
+        if (totalAmount) {
+            totalAmount.textContent = `$${tier.price.toFixed(2)}`;
+        }
         if (billingNote) {
             billingNote.innerHTML = `
                 <strong>First box ships immediately</strong><br>
@@ -95,20 +97,29 @@ class CheckoutManager {
         }
 
         // Update final total in the review step
-        const finalTotal = document.querySelector('#step3 .final-total');
-        if(finalTotal) {
-            finalTotal.querySelector('.total-price').textContent = `$${tier.price.toFixed(2)}`;
-            finalTotal.querySelector('.recurring span:first-child').textContent = `Then $${tier.price.toFixed(2)}/month`;
+        const finalTotalPrice = document.getElementById('finalTotalPrice');
+        const recurringPrice = document.getElementById('recurringPrice');
+        if (finalTotalPrice) {
+            finalTotalPrice.textContent = `$${tier.price.toFixed(2)}`;
+        }
+        if (recurringPrice) {
+            recurringPrice.textContent = `Then $${tier.price.toFixed(2)}/month`;
         }
         
         // Update subscription details in the review step
-        const reviewDetailsContainer = document.querySelector('#step3 .review-section:nth-of-type(3) .review-content');
-        if(reviewDetailsContainer) {
-            reviewDetailsContainer.innerHTML = `
+        const subscriptionReview = document.getElementById('subscriptionReview');
+        if (subscriptionReview) {
+            subscriptionReview.innerHTML = `
                 <p><strong>${tier.name}</strong></p>
                 <p>$${tier.price.toFixed(2)}/month • ${tier.features[0]} • Free shipping both ways</p>
                 <p>First box ships within 2-3 business days</p>
             `;
+        }
+        
+        // Update subscription terms
+        const subscriptionTerms = document.getElementById('subscriptionTerms');
+        if (subscriptionTerms) {
+            subscriptionTerms.textContent = `I understand this is a monthly subscription that will automatically renew at $${tier.price.toFixed(2)}/month until I cancel`;
         }
     }
 
@@ -162,6 +173,10 @@ class CheckoutManager {
         document.getElementById('sameAsShipping')?.addEventListener('change', (e) => {
             this.toggleBillingAddress(e.target.checked);
         });
+        
+        // Terms acceptance validation
+        document.getElementById('agreeTerms')?.addEventListener('change', () => this.validateTermsAcceptance());
+        document.getElementById('agreeSubscription')?.addEventListener('change', () => this.validateTermsAcceptance());
         
         // Form validation on input
         this.bindFormValidation();
@@ -229,6 +244,8 @@ class CheckoutManager {
         // Update review content if going to step 3
         if (stepNumber === 3) {
             this.updateReviewContent();
+            // Validate terms acceptance when reaching final step
+            this.validateTermsAcceptance();
         }
     }
 
@@ -369,6 +386,26 @@ class CheckoutManager {
         });
     }
 
+    validateTermsAcceptance() {
+        const termsChecked = document.getElementById('agreeTerms')?.checked;
+        const subscriptionChecked = document.getElementById('agreeSubscription')?.checked;
+        const completeOrderBtn = document.getElementById('completeOrder');
+        
+        if (completeOrderBtn) {
+            const bothTermsAccepted = termsChecked && subscriptionChecked;
+            completeOrderBtn.disabled = !bothTermsAccepted;
+            
+            // Add visual feedback
+            if (bothTermsAccepted) {
+                completeOrderBtn.classList.add('enabled');
+                completeOrderBtn.classList.remove('disabled');
+            } else {
+                completeOrderBtn.classList.add('disabled');
+                completeOrderBtn.classList.remove('enabled');
+            }
+        }
+    }
+
     handlePaymentMethodChange() {
         const selectedMethod = document.querySelector('input[name="paymentMethod"]:checked')?.value;
         
@@ -465,132 +502,75 @@ class CheckoutManager {
         
         if (cvvField) {
             cvvField.addEventListener('input', (e) => {
-                e.target.value = e.target.value.replace(/\D/g, '').substring(0, 4);
+                const value = e.target.value.replace(/\D/g, '');
+                e.target.value = value.substring(0, 4);
             });
         }
     }
 
-    updateCardTypeIcon(cardNumber) {
-        const iconElement = document.getElementById('cardTypeIcon');
-        if (!iconElement) return;
-        
-        const cardType = this.getCardType(cardNumber);
-        const icons = {
-            'visa': '💳',
-            'mastercard': '💳',
-            'amex': '💳',
-            'discover': '💳',
-            'unknown': '💳'
-        };
-        
-        iconElement.textContent = icons[cardType] || icons.unknown;
-    }
-
-    getCardType(cardNumber) {
-        const patterns = {
-            visa: /^4/,
-            mastercard: /^5[1-5]/,
-            amex: /^3[47]/,
-            discover: /^6(?:011|5)/
-        };
-        
-        for (const [type, pattern] of Object.entries(patterns)) {
-            if (pattern.test(cardNumber)) {
-                return type;
-            }
-        }
-        
-        return 'unknown';
-    }
-
     bindDigitalPayments() {
-        document.getElementById('applePayBtn')?.addEventListener('click', () => {
-            this.handleDigitalPayment('apple_pay');
-        });
-        
-        document.getElementById('googlePayBtn')?.addEventListener('click', () => {
-            this.handleDigitalPayment('google_pay');
-        });
-        
-        document.getElementById('paypalBtn')?.addEventListener('click', () => {
-            this.handleDigitalPayment('paypal');
-        });
-    }
-
-    handleDigitalPayment(method) {
-        // In a real implementation, you would integrate with the respective payment APIs
-        alert(`${method} integration would be implemented here. For demo purposes, proceeding to confirmation.`);
-        this.goToStep(3);
-    }
-
-    updateReviewContent() {
-        // Update shipping information
-        const shippingReview = document.getElementById('shippingReview');
-        if (shippingReview) {
-            const firstName = document.getElementById('firstName')?.value || '';
-            const lastName = document.getElementById('lastName')?.value || '';
-            const address1 = document.getElementById('address1')?.value || '';
-            const address2 = document.getElementById('address2')?.value || '';
-            const city = document.getElementById('city')?.value || '';
-            const state = document.getElementById('state')?.value || '';
-            const zipCode = document.getElementById('zipCode')?.value || '';
-            
-            shippingReview.innerHTML = `
-                <p><strong>${firstName} ${lastName}</strong></p>
-                <p>${address1}</p>
-                ${address2 ? `<p>${address2}</p>` : ''}
-                <p>${city}, ${state} ${zipCode}</p>
-            `;
+        // Apple Pay button
+        const applePayBtn = document.getElementById('applePayBtn');
+        if (applePayBtn) {
+            applePayBtn.addEventListener('click', () => this.handleApplePay());
         }
         
-        // Update payment information
-        const paymentReview = document.getElementById('paymentReview');
-        if (paymentReview) {
-            const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked')?.value;
-            
-            if (paymentMethod === 'card') {
-                const cardNumber = document.getElementById('cardNumber')?.value || '';
-                const lastFour = cardNumber.replace(/\s/g, '').slice(-4);
-                const cardType = this.getCardType(cardNumber.replace(/\s/g, ''));
-                
-                paymentReview.innerHTML = `
-                    <p><strong>${cardType.toUpperCase()} ending in ${lastFour}</strong></p>
-                    <p>Billing address: ${document.getElementById('sameAsShipping')?.checked ? 'Same as shipping' : 'Different address'}</p>
-                `;
-            } else {
-                paymentReview.innerHTML = `<p><strong>Digital Wallet</strong></p>`;
-            }
+        // Google Pay button
+        const googlePayBtn = document.getElementById('googlePayBtn');
+        if (googlePayBtn) {
+            googlePayBtn.addEventListener('click', () => this.handleGooglePay());
         }
+        
+        // PayPal button
+        const paypalBtn = document.getElementById('paypalBtn');
+        if (paypalBtn) {
+            paypalBtn.addEventListener('click', () => this.handlePayPal());
+        }
+    }
+
+    updateCardTypeIcon(cardNumber) {
+        const cardTypeIcon = document.getElementById('cardTypeIcon');
+        if (!cardTypeIcon) return;
+        
+        let cardType = 'generic';
+        
+        if (/^4/.test(cardNumber)) {
+            cardType = 'visa';
+        } else if (/^5[1-5]/.test(cardNumber)) {
+            cardType = 'mastercard';
+        } else if (/^3[47]/.test(cardNumber)) {
+            cardType = 'amex';
+        } else if (/^6/.test(cardNumber)) {
+            cardType = 'discover';
+        }
+        
+        cardTypeIcon.className = `card-type-icon ${cardType}`;
     }
 
     saveFormData() {
-        // Save form data to localStorage for persistence
-        const formData = new FormData(document.getElementById('checkoutForm'));
-        const data = {};
-        
-        for (let [key, value] of formData.entries()) {
-            data[key] = value;
-        }
-        
-        localStorage.setItem('checkoutFormData', JSON.stringify(data));
-        this.formData = data;
+        const formData = this.collectFormData();
+        localStorage.setItem('checkoutFormData', JSON.stringify(formData));
     }
 
     populateFormFromStorage() {
-        const savedData = localStorage.getItem('checkoutFormData');
-        if (savedData) {
-            try {
-                const data = JSON.parse(savedData);
+        try {
+            const savedData = localStorage.getItem('checkoutFormData');
+            if (savedData) {
+                const formData = JSON.parse(savedData);
                 
-                Object.entries(data).forEach(([key, value]) => {
+                Object.entries(formData).forEach(([key, value]) => {
                     const field = document.getElementById(key);
-                    if (field && field.type !== 'password') {
-                        field.value = value;
+                    if (field && value) {
+                        if (field.type === 'checkbox') {
+                            field.checked = value;
+                        } else {
+                            field.value = value;
+                        }
                     }
                 });
-            } catch (e) {
-                console.error('Error loading saved form data:', e);
             }
+        } catch (e) {
+            console.error('Error loading saved form data:', e);
         }
     }
 
@@ -798,23 +778,76 @@ class CheckoutManager {
 
     isValidCardNumber(cardNumber) {
         const cleanNumber = cardNumber.replace(/\s/g, '');
-        return cleanNumber.length >= 13 && cleanNumber.length <= 19 && /^\d+$/.test(cleanNumber);
+        return /^\d{13,19}$/.test(cleanNumber);
     }
 
     isValidExpiryDate(expiryDate) {
-        const match = expiryDate.match(/^(\d{2})\/(\d{2})$/);
-        if (!match) return false;
+        const regex = /^(0[1-9]|1[0-2])\/\d{2}$/;
+        if (!regex.test(expiryDate)) return false;
         
-        const month = parseInt(match[1], 10);
-        const year = parseInt('20' + match[2], 10);
+        const [month, year] = expiryDate.split('/');
+        const expiry = new Date(2000 + parseInt(year), parseInt(month) - 1);
         const now = new Date();
-        const expiry = new Date(year, month - 1);
         
-        return month >= 1 && month <= 12 && expiry > now;
+        return expiry > now;
     }
 
     isValidCVV(cvv) {
         return /^\d{3,4}$/.test(cvv);
+    }
+
+    updateReviewContent() {
+        // Update customer information review
+        const customerReview = document.getElementById('customerReview');
+        if (customerReview) {
+            const firstName = document.getElementById('firstName')?.value || '';
+            const lastName = document.getElementById('lastName')?.value || '';
+            const email = document.getElementById('email')?.value || '';
+            const address1 = document.getElementById('address1')?.value || '';
+            const city = document.getElementById('city')?.value || '';
+            const state = document.getElementById('state')?.value || '';
+            const zipCode = document.getElementById('zipCode')?.value || '';
+            
+            customerReview.innerHTML = `
+                <p><strong>${firstName} ${lastName}</strong></p>
+                <p>${email}</p>
+                <p>${address1}</p>
+                <p>${city}, ${state} ${zipCode}</p>
+            `;
+        }
+        
+        // Update payment method review
+        const paymentReview = document.getElementById('paymentReview');
+        if (paymentReview) {
+            const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked')?.value;
+            
+            if (paymentMethod === 'card') {
+                const cardNumber = document.getElementById('cardNumber')?.value || '';
+                const maskedCard = '**** **** **** ' + cardNumber.slice(-4);
+                paymentReview.innerHTML = `<p>Credit Card ending in ${cardNumber.slice(-4)}</p>`;
+            } else if (paymentMethod === 'digital') {
+                paymentReview.innerHTML = `<p>Digital Payment</p>`;
+            }
+        }
+    }
+
+    // Digital payment handlers
+    async handleApplePay() {
+        // Apple Pay implementation would go here
+        console.log('Apple Pay selected');
+        alert('Apple Pay integration would be implemented here');
+    }
+
+    async handleGooglePay() {
+        // Google Pay implementation would go here
+        console.log('Google Pay selected');
+        alert('Google Pay integration would be implemented here');
+    }
+
+    async handlePayPal() {
+        // PayPal implementation would go here
+        console.log('PayPal selected');
+        alert('PayPal integration would be implemented here');
     }
 }
 

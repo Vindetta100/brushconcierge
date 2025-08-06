@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Checkout - Brush Concierge | Professional Makeup Brush Cleaning</title>
-    <meta name="description" content="Complete your Brush Concierge subscription. Professional makeup brush cleaning service for $19.99/month. Secure checkout with multiple payment options.">
+    <meta name="description" content="Complete your Brush Concierge subscription. Professional makeup brush cleaning service. Secure checkout with multiple payment options.">
     <link rel="stylesheet" href="/concierge/style.css">
     <link rel="stylesheet" href="/concierge/checkout.css">
     <script src="https://js.stripe.com/v3/"></script>
@@ -74,7 +74,7 @@
                         <div class="pricing-breakdown">
                             <div class="price-line">
                                 <span>Monthly Subscription</span>
-                                <span>$19.99</span>
+                                <span id="monthlyPrice">$59.00</span>
                             </div>
                             <div class="price-line discount-line" id="discountLine" style="display: none;">
                                 <span>Launch Discount (20% off)</span>
@@ -86,14 +86,14 @@
                             </div>
                             <div class="price-line total-line">
                                 <span>Total Today</span>
-                                <span class="total-amount">$19.99</span>
+                                <span class="total-amount" id="totalAmount">$59.00</span>
                             </div>
                         </div>
 
                         <div class="billing-info">
-                            <p class="billing-note">
+                            <p class="billing-note" id="billingNote">
                                 <strong>First box ships immediately</strong><br>
-                                Then billed monthly at $19.99
+                                Then billed monthly at $59.00
                             </p>
                         </div>
 
@@ -259,125 +259,138 @@
                         <div class="form-step" id="step2">
                             <div class="step-header">
                                 <h2>Payment Information</h2>
-                                <p>Your payment is secure and encrypted</p>
-                            </div>
-
-                            <div class="payment-methods">
-                                <div class="payment-method active" data-method="card">
-                                    <div class="method-header">
-                                        <input type="radio" id="cardPayment" name="paymentMethod" value="card" checked>
-                                        <label for="cardPayment" class="method-label">
-                                            <span class="method-icon">💳</span>
-                                            Credit or Debit Card
-                                        </label>
-                                    </div>
-                                    <div class="method-content">
-                                        <div class="card-logos">
-                                            <span class="card-logo">💳 Visa</span>
-                                            <span class="card-logo">💳 Mastercard</span>
-                                            <span class="card-logo">💳 Amex</span>
-                                            <span class="card-logo">💳 Discover</span>
-                                        </div>
-                                        
-                                        <div class="form-group">
-                                            <label for="cardNumber" class="form-label">Card Number *</label>
-                                            <div class="card-input-wrapper">
-                                                <input type="text" id="cardNumber" name="cardNumber" class="form-control card-input" placeholder="1234 5678 9012 3456" required>
-                                                <div class="card-type-icon" id="cardTypeIcon"></div>
-                                            </div>
-                                            <div class="error-message" id="cardNumberError"></div>
-                                        </div>
-                                        
-                                        <div class="form-row">
-                                            <div class="form-group">
-                                                <label for="expiryDate" class="form-label">Expiry Date *</label>
-                                                <input type="text" id="expiryDate" name="expiryDate" class="form-control" placeholder="MM/YY" required>
-                                                <div class="error-message" id="expiryDateError"></div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="cvv" class="form-label">CVV *</label>
-                                                <input type="text" id="cvv" name="cvv" class="form-control" placeholder="123" required>
-                                                <div class="error-message" id="cvvError"></div>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="form-group">
-                                            <label for="cardName" class="form-label">Name on Card *</label>
-                                            <input type="text" id="cardName" name="cardName" class="form-control" required>
-                                            <div class="error-message" id="cardNameError"></div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="payment-method" data-method="digital">
-                                    <div class="method-header">
-                                        <input type="radio" id="digitalPayment" name="paymentMethod" value="digital">
-                                        <label for="digitalPayment" class="method-label">
-                                            <span class="method-icon">📱</span>
-                                            Digital Wallets
-                                        </label>
-                                    </div>
-                                    <div class="method-content">
-                                        <div class="digital-options">
-                                            <button type="button" class="digital-btn apple-pay" id="applePayBtn">
-                                                <span class="digital-icon">🍎</span>
-                                                Apple Pay
-                                            </button>
-                                            <button type="button" class="digital-btn google-pay" id="googlePayBtn">
-                                                <span class="digital-icon">🟢</span>
-                                                Google Pay
-                                            </button>
-                                            <button type="button" class="digital-btn paypal" id="paypalBtn">
-                                                <span class="digital-icon">💙</span>
-                                                PayPal
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
+                                <p>Your payment information is secure and encrypted</p>
                             </div>
 
                             <div class="form-section">
-                                <h3>Billing Address</h3>
-                                <div class="form-group">
-                                    <label class="checkbox-label">
-                                        <input type="checkbox" id="sameAsShipping" name="sameAsShipping" checked>
-                                        <span class="checkbox-custom"></span>
-                                        Same as shipping address
-                                    </label>
-                                </div>
-                                
-                                <div class="billing-address-form" id="billingAddressForm" style="display: none;">
-                                    <div class="form-group">
-                                        <label for="billingAddress1" class="form-label">Address Line 1 *</label>
-                                        <input type="text" id="billingAddress1" name="billingAddress1" class="form-control">
+                                <h3>Payment Method</h3>
+                                <div class="payment-methods">
+                                    <div class="payment-method" data-method="card">
+                                        <input type="radio" id="paymentCard" name="paymentMethod" value="card" checked>
+                                        <label for="paymentCard" class="payment-method-label">
+                                            <div class="payment-method-content">
+                                                <span class="payment-method-title">Credit or Debit Card</span>
+                                                <div class="payment-method-icons">
+                                                    <img src="/concierge/img/visa.svg" alt="Visa" class="payment-icon">
+                                                    <img src="/concierge/img/mastercard.svg" alt="Mastercard" class="payment-icon">
+                                                    <img src="/concierge/img/amex.svg" alt="American Express" class="payment-icon">
+                                                    <img src="/concierge/img/discover.svg" alt="Discover" class="payment-icon">
+                                                </div>
+                                            </div>
+                                        </label>
                                     </div>
+
+                                    <div class="payment-method" data-method="digital">
+                                        <input type="radio" id="paymentDigital" name="paymentMethod" value="digital">
+                                        <label for="paymentDigital" class="payment-method-label">
+                                            <div class="payment-method-content">
+                                                <span class="payment-method-title">Digital Wallets</span>
+                                                <div class="payment-method-icons">
+                                                    <img src="/concierge/img/apple-pay.svg" alt="Apple Pay" class="payment-icon">
+                                                    <img src="/concierge/img/google-pay.svg" alt="Google Pay" class="payment-icon">
+                                                    <img src="/concierge/img/paypal.svg" alt="PayPal" class="payment-icon">
+                                                </div>
+                                            </div>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Card Payment Form -->
+                            <div class="payment-form card-payment active" id="cardPaymentForm">
+                                <div class="form-section">
+                                    <h3>Card Information</h3>
                                     <div class="form-group">
-                                        <label for="billingAddress2" class="form-label">Address Line 2 (Optional)</label>
-                                        <input type="text" id="billingAddress2" name="billingAddress2" class="form-control">
+                                        <label for="cardNumber" class="form-label">Card Number *</label>
+                                        <div class="card-input-wrapper">
+                                            <input type="text" id="cardNumber" name="cardNumber" class="form-control" placeholder="1234 5678 9012 3456" required>
+                                            <div class="card-type-icon" id="cardTypeIcon"></div>
+                                        </div>
+                                        <div class="error-message" id="cardNumberError"></div>
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group">
-                                            <label for="billingCity" class="form-label">City *</label>
-                                            <input type="text" id="billingCity" name="billingCity" class="form-control">
+                                            <label for="expiryDate" class="form-label">Expiry Date *</label>
+                                            <input type="text" id="expiryDate" name="expiryDate" class="form-control" placeholder="MM/YY" required>
+                                            <div class="error-message" id="expiryDateError"></div>
                                         </div>
                                         <div class="form-group">
-                                            <label for="billingState" class="form-label">State *</label>
-                                            <select id="billingState" name="billingState" class="form-control">
-                                                <option value="">Select State</option>
-                                                <!-- Same state options as shipping -->
-                                            </select>
+                                            <label for="cvv" class="form-label">CVV *</label>
+                                            <input type="text" id="cvv" name="cvv" class="form-control" placeholder="123" required>
+                                            <div class="error-message" id="cvvError"></div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="cardName" class="form-label">Name on Card *</label>
+                                        <input type="text" id="cardName" name="cardName" class="form-control" required>
+                                        <div class="error-message" id="cardNameError"></div>
+                                    </div>
+                                </div>
+
+                                <div class="form-section">
+                                    <h3>Billing Address</h3>
+                                    <div class="form-group">
+                                        <div class="checkbox-wrapper">
+                                            <input type="checkbox" id="sameAsShipping" name="sameAsShipping" checked>
+                                            <label for="sameAsShipping" class="checkbox-label">Same as shipping address</label>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="billing-address-form" id="billingAddressForm" style="display: none;">
+                                        <div class="form-group">
+                                            <label for="billingAddress1" class="form-label">Address Line 1 *</label>
+                                            <input type="text" id="billingAddress1" name="billingAddress1" class="form-control">
                                         </div>
                                         <div class="form-group">
-                                            <label for="billingZipCode" class="form-label">ZIP Code *</label>
-                                            <input type="text" id="billingZipCode" name="billingZipCode" class="form-control">
+                                            <label for="billingAddress2" class="form-label">Address Line 2 (Optional)</label>
+                                            <input type="text" id="billingAddress2" name="billingAddress2" class="form-control">
                                         </div>
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label for="billingCity" class="form-label">City *</label>
+                                                <input type="text" id="billingCity" name="billingCity" class="form-control">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="billingState" class="form-label">State *</label>
+                                                <select id="billingState" name="billingState" class="form-control">
+                                                    <option value="">Select State</option>
+                                                    <!-- Same state options as shipping -->
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="billingZipCode" class="form-label">ZIP Code *</label>
+                                                <input type="text" id="billingZipCode" name="billingZipCode" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Digital Payment Form -->
+                            <div class="payment-form digital-payment" id="digitalPaymentForm">
+                                <div class="form-section">
+                                    <h3>Choose Your Digital Wallet</h3>
+                                    <div class="digital-payment-buttons">
+                                        <button type="button" class="digital-payment-btn apple-pay" id="applePayBtn">
+                                            <img src="/concierge/img/apple-pay.svg" alt="Apple Pay">
+                                            <span>Pay with Apple Pay</span>
+                                        </button>
+                                        <button type="button" class="digital-payment-btn google-pay" id="googlePayBtn">
+                                            <img src="/concierge/img/google-pay.svg" alt="Google Pay">
+                                            <span>Pay with Google Pay</span>
+                                        </button>
+                                        <button type="button" class="digital-payment-btn paypal" id="paypalBtn">
+                                            <img src="/concierge/img/paypal.svg" alt="PayPal">
+                                            <span>Pay with PayPal</span>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="form-actions">
-                                <button type="button" class="btn btn--outline btn--lg" id="backToInfo">
-                                    ← Back to Information
+                                <button type="button" class="btn btn--secondary btn--lg" id="backToInfo">
+                                    <span class="btn-arrow">←</span>
+                                    Back to Information
                                 </button>
                                 <button type="button" class="btn btn--primary btn--lg" id="reviewOrder">
                                     Review Order
@@ -386,20 +399,20 @@
                             </div>
                         </div>
 
-                        <!-- Step 3: Order Review & Confirmation -->
+                        <!-- Step 3: Order Review -->
                         <div class="form-step" id="step3">
                             <div class="step-header">
                                 <h2>Review Your Order</h2>
-                                <p>Please review your information before completing your subscription</p>
+                                <p>Please review your information before completing your order</p>
                             </div>
 
                             <div class="review-sections">
                                 <div class="review-section">
-                                    <h3>Shipping Information</h3>
-                                    <div class="review-content" id="shippingReview">
+                                    <h3>Customer Information</h3>
+                                    <div class="review-content" id="customerReview">
                                         <!-- Populated by JavaScript -->
                                     </div>
-                                    <button type="button" class="edit-btn" onclick="goToStep(1)">Edit</button>
+                                    <button type="button" class="edit-btn" onclick="checkout.goToStep(1)">Edit</button>
                                 </div>
 
                                 <div class="review-section">
@@ -407,59 +420,65 @@
                                     <div class="review-content" id="paymentReview">
                                         <!-- Populated by JavaScript -->
                                     </div>
-                                    <button type="button" class="edit-btn" onclick="goToStep(2)">Edit</button>
+                                    <button type="button" class="edit-btn" onclick="checkout.goToStep(2)">Edit</button>
                                 </div>
 
                                 <div class="review-section">
                                     <h3>Subscription Details</h3>
-                                    <div class="review-content">
-                                        <p><strong>Brush Concierge Monthly Subscription</strong></p>
-                                        <p>$19.99/month • Up to 20 brushes • Free shipping both ways</p>
+                                    <div class="review-content" id="subscriptionReview">
+                                        <p><strong>The Curator</strong></p>
+                                        <p>$59.00/month • Up to 20 brushes • Free shipping both ways</p>
                                         <p>First box ships within 2-3 business days</p>
+                                    </div>
+                                </div>
+
+                                <div class="review-section">
+                                    <h3>Order Total</h3>
+                                    <div class="review-total">
+                                        <div class="total-line">
+                                            <span>Today's Total:</span>
+                                            <span class="total-price" id="finalTotalPrice">$59.00</span>
+                                        </div>
+                                        <div class="recurring-line">
+                                            <span id="recurringPrice">Then $59.00/month</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="terms-section">
-                                <label class="checkbox-label">
-                                    <input type="checkbox" id="agreeTerms" name="agreeTerms" required>
-                                    <span class="checkbox-custom"></span>
-                                    I agree to the <a href="../legal.html#terms" target="_blank">Terms of Service</a> and <a href="../legal.html#privacy" target="_blank">Privacy Policy</a>
-                                </label>
-                                <label class="checkbox-label">
-                                    <input type="checkbox" id="agreeSubscription" name="agreeSubscription" required>
-                                    <span class="checkbox-custom"></span>
-                                    I understand this is a monthly subscription that will automatically renew at $19.99/month until I cancel
-                                </label>
-                                <label class="checkbox-label">
-                                    <input type="checkbox" id="marketingEmails" name="marketingEmails">
-                                    <span class="checkbox-custom"></span>
-                                    Send me beauty tips and exclusive offers (optional)
-                                </label>
-                            </div>
-
-                            <div class="final-total">
-                                <div class="total-breakdown">
-                                    <div class="total-line">
-                                        <span>Today's Total:</span>
-                                        <span class="total-price">$19.99</span>
+                            <div class="form-section">
+                                <h3>Terms and Conditions</h3>
+                                <div class="terms-section">
+                                    <div class="checkbox-wrapper">
+                                        <input type="checkbox" id="agreeTerms" name="agreeTerms" required>
+                                        <label for="agreeTerms" class="checkbox-label">
+                                            I agree to the <a href="/legal.html#terms" target="_blank">Terms of Service</a> and <a href="/legal.html#privacy" target="_blank">Privacy Policy</a>
+                                        </label>
                                     </div>
-                                    <div class="total-line recurring">
-                                        <span>Then $19.99/month</span>
-                                        <span class="cancel-note">Cancel anytime</span>
+                                    <div class="checkbox-wrapper">
+                                        <input type="checkbox" id="agreeSubscription" name="agreeSubscription" required>
+                                        <label for="agreeSubscription" class="checkbox-label">
+                                            <span id="subscriptionTerms">I understand this is a monthly subscription that will automatically renew at $59.00/month until I cancel</span>
+                                        </label>
+                                    </div>
+                                    <div class="checkbox-wrapper">
+                                        <input type="checkbox" id="marketingEmails" name="marketingEmails">
+                                        <label for="marketingEmails" class="checkbox-label">
+                                            I'd like to receive promotional emails and beauty tips (optional)
+                                        </label>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="form-actions">
-                                <button type="button" class="btn btn--outline btn--lg" id="backToPayment">
-                                    ← Back to Payment
+                                <button type="button" class="btn btn--secondary btn--lg" id="backToPayment">
+                                    <span class="btn-arrow">←</span>
+                                    Back to Payment
                                 </button>
-                                <button type="submit" class="btn btn--primary btn--lg btn--complete" id="completeOrder">
-                                    <span class="btn-text">Complete Order</span>
-                                    <span class="btn-loader" style="display: none;">Processing...</span>
-                                    <span class="btn-arrow">🔒</span>
-                                </button>
+                <button type="submit" class="btn btn--primary btn--lg btn--complete" id="completeOrder" disabled>
+                    <span class="btn-text">Complete Order</span>
+                    <span class="btn-loader"></span>
+                </button>
                             </div>
                         </div>
                     </form>
@@ -469,26 +488,24 @@
     </main>
 
     <!-- Success Modal -->
-    <div class="modal-overlay" id="successModal" style="display: none;">
-        <div class="modal">
-            <div class="modal-content">
-                <div class="success-icon">✅</div>
-                <h2>Welcome to Brush Concierge!</h2>
-                <p>Your subscription has been successfully activated.</p>
-                <div class="success-details">
-                    <p><strong>What happens next:</strong></p>
-                    <ul>
-                        <li>You'll receive a confirmation email within 5 minutes</li>
-                        <li>Your first cleaning kit ships within 2-3 business days</li>
-                        <li>Follow the included instructions to send us your brushes</li>
-                        <li>Receive your professionally cleaned brushes in 5-7 days</li>
-                    </ul>
-                </div>
-                <div class="modal-actions">
-                    <button class="btn btn--primary btn--lg" onclick="window.location.href='/concierge/index.html'">
-                        Return to Home
-                    </button>
-                </div>
+    <div class="modal" id="successModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>🎉 Welcome to Brush Concierge!</h2>
+            </div>
+            <div class="modal-body">
+                <p>Your subscription has been successfully created!</p>
+                <p>You'll receive a confirmation email shortly with your tracking information.</p>
+                <p><strong>What happens next:</strong></p>
+                <ul>
+                    <li>Your welcome kit ships within 2-3 business days</li>
+                    <li>Use the prepaid mailer to send us your brushes</li>
+                    <li>We'll clean and return them within 5-7 business days</li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <a href="/concierge/account.html" class="btn btn--primary">View My Account</a>
+                <a href="/concierge/index.html" class="btn btn--secondary">Back to Home</a>
             </div>
         </div>
     </div>
