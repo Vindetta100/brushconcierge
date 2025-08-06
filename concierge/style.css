@@ -74,6 +74,12 @@
   --space-20: 20px;
   --space-24: 24px;
   --space-32: 32px;
+  --space-40: 40px;
+  --space-48: 48px;
+  --space-64: 64px;
+  --space-80: 80px;
+  --space-96: 96px;
+  --space-128: 128px;
 
   /* Border Radius */
   --radius-sm: 6px;
@@ -717,7 +723,7 @@ select.form-control {
 /* Hero Section */
 .hero {
   background: var(--gradient-hero);
-  padding: 80px 0 100px;
+  padding: var(--space-80) 0 var(--space-96);
   min-height: 100vh;
   display: flex;
   align-items: center;
@@ -823,7 +829,7 @@ select.form-control {
 
 /* Problem/Solution Section */
 .problem-solution {
-  padding: 100px 0;
+  padding: var(--space-96) 0;
   background: var(--color-warm-white);
 }
 
@@ -901,7 +907,7 @@ select.form-control {
 
 /* Benefits Section */
 .benefits {
-  padding: 100px 0;
+  padding: var(--space-96) 0;
   background: var(--gradient-hero);
 }
 
@@ -948,7 +954,7 @@ select.form-control {
 
 /* How It Works Section */
 .how-it-works {
-  padding: 100px 0;
+  padding: var(--space-96) 0;
   background: var(--color-warm-white);
 }
 
@@ -1029,7 +1035,7 @@ select.form-control {
 
 /* Pricing Section */
 .pricing {
-  padding: 100px 0;
+  padding: var(--space-96) 0;
   background: var(--color-pink-light);
 }
 
@@ -1101,7 +1107,7 @@ select.form-control {
 
 /* Trust Signals Section */
 .trust-signals {
-  padding: 100px 0;
+  padding: var(--space-96) 0;
   background: var(--color-warm-white);
 }
 
@@ -1163,7 +1169,7 @@ select.form-control {
 
 /* Waitlist Section */
 .waitlist {
-  padding: 100px 0;
+  padding: var(--space-96) 0;
   background: var(--gradient-accent);
   text-align: center;
 }
@@ -1249,7 +1255,7 @@ select.form-control {
 
 /* FAQ Section */
 .faq {
-  padding: 100px 0;
+  padding: var(--space-96) 0;
   background: var(--color-warm-white);
 }
 
