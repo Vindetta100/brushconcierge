@@ -1,4 +1,20 @@
+
 # Changelog
+
+## [Phase 4] - 2025-08-05 - Low Priority Enhancements
+
+### Changed
+- **Content:** Updated the shipping cost display in the order summary from "FREE" to "Included" to more accurately reflect that the cost is part of the overall subscription price.
+
+### Implementation Details
+
+#### Shipping Cost Display
+- **Commit:** `content: clarify shipping cost display accuracy`
+- **Files Changed:**
+  - `concierge/checkout.html`: Changed text from `FREE` to `Included`.
+- **Impact:** Provides clearer messaging to customers about shipping costs.
+
+---
 
 ## [Phase 3] - 2025-08-05 - Medium Priority Polish
 
