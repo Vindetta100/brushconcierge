@@ -1,5 +1,43 @@
 # Changelog
 
+## [Phase 3] - 2025-08-05 - Medium Priority Polish
+
+### Fixed
+- **Styling:** Corrected vertical alignment of checkboxes and their labels to ensure they are centered properly.
+
+### Changed
+- **Accessibility:** Increased the color contrast of primary action buttons to meet WCAG AA standards, improving readability for users with visual impairments.
+- **Content:** Standardized the term "Bi-weekly service" to "Bi-weekly option" across all pricing tiers for consistency.
+- **UI:** Enhanced the visibility of feature icons on mobile devices by increasing their font size and weight.
+
+### Implementation Details
+
+#### Checkbox Alignment Fix
+- **Commit:** `style(checkout): fix checkbox text vertical alignment`
+- **Files Changed:**
+  - `concierge/checkout.css`: Adjusted `align-items` to `center` and removed `margin-top`.
+- **Impact:** Improves the visual polish and readability of forms.
+
+#### Button Color Contrast
+- **Commit:** `feat(a11y): improve button color contrast for accessibility compliance`
+- **Files Changed:**
+  - `concierge/style.css`: Modified `--color-coral` variable to a darker shade.
+- **Impact:** Ensures buttons are accessible to a wider range of users.
+
+#### Copy Standardization
+- **Commit:** `content: standardize copy formatting across pricing tiers`
+- **Files Changed:**
+  - `concierge/index.html`: Updated text in the pricing section.
+- **Impact:** Creates a more consistent and professional user experience.
+
+#### Mobile Icon Visibility
+- **Commit:** `style(mobile): improve plan feature icon visibility and size`
+- **Files Changed:**
+  - `concierge/style.css`: Increased `font-size` and `font-weight` for `.pricing-tier__feature-icon`.
+- **Impact:** Improves readability of plan features on smaller screens.
+
+---
+
 All notable changes to the Brush Concierge checkout system will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),

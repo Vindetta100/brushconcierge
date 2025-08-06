@@ -21,9 +21,9 @@
   --color-info: rgba(0, 31, 63, 1); /* Navy #001F3F */
   --color-focus-ring: rgba(139, 0, 0, 0.4);
   --color-select-caret: rgba(19, 52, 59, 0.8);
-  --color-coral: rgba(255, 127, 80, 1); /* Coral #FF7F50 for CTA buttons */
-  --color-coral-hover: rgba(235, 107, 60, 1);
-  --color-coral-active: rgba(215, 87, 40, 1);
+  --color-coral: rgba(217, 91, 43, 1); /* Coral #D95B2B for CTA buttons - higher contrast */
+  --color-coral-hover: rgba(194, 81, 38, 1);
+  --color-coral-active: rgba(175, 73, 34, 1);
   --color-gold: rgba(212, 175, 55, 1); /* Gold #D4AF37 */
   --color-navy: rgba(0, 31, 63, 1); /* Navy #001F3F */
 
@@ -1624,6 +1624,8 @@ select.form-control {
 .pricing-tier__feature-icon {
   margin-right: 8px;
   color: var(--color-gold);
+  font-weight: var(--font-weight-bold);
+  font-size: 1.1rem;
 }
 
 .pricing-tier__cta {

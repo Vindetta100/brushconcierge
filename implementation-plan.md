@@ -79,34 +79,34 @@
 ### 🟠 MEDIUM PRIORITY - UI Polish
 
 #### Fix Checkbox Alignment Issues
-- [ ] **Issue:** Terms checkboxes misaligned with text (text sits too high)
-- [ ] **Files:** `concierge/checkout.css`
-- [ ] **Action:** Adjust vertical alignment for better readability
-- [ ] **Test:** Verify alignment on different screen sizes
-- [ ] **Commit:** `style(checkout): fix checkbox text vertical alignment`
+- [x] **Issue:** Terms checkboxes misaligned with text (text sits too high)
+- [x] **Files:** `concierge/checkout.css`
+- [x] **Action:** Adjust vertical alignment for better readability
+- [x] **Test:** Verify alignment on different screen sizes
+- [x] **Commit:** `style(checkout): fix checkbox text vertical alignment`
 
 #### Improve Button Color Contrast
-- [ ] **Issue:** Orange buttons on cream background may not meet accessibility guidelines
-- [ ] **Files:** `concierge/checkout.css`, `concierge/style.css`
-- [ ] **Action:** Increase contrast ratio for better visibility
-- [ ] **Validation:** Test against WCAG contrast requirements
-- [ ] **Test:** Verify readability for users with visual impairments
-- [ ] **Commit:** `feat(a11y): improve button color contrast for accessibility compliance`
+- [x] **Issue:** Orange buttons on cream background may not meet accessibility guidelines
+- [x] **Files:** `concierge/checkout.css`, `concierge/style.css`
+- [x] **Action:** Increase contrast ratio for better visibility
+- [x] **Validation:** Test against WCAG contrast requirements
+- [x] **Test:** Verify readability for users with visual impairments
+- [x] **Commit:** `feat(a11y): improve button color contrast for accessibility compliance`
 
 #### Standardize Copy Across Pricing Tiers
-- [ ] **Issue:** "Bi-weekly service available" hyphen usage inconsistent
-- [ ] **Files:** `concierge/index.html`
-- [ ] **Action:** Review and standardize copy formatting across all plans
-- [ ] **Method:** Ensure consistent terminology and punctuation
-- [ ] **Test:** Review all three pricing tier descriptions
-- [ ] **Commit:** `content: standardize copy formatting across pricing tiers`
+- [x] **Issue:** "Bi-weekly service available" hyphen usage inconsistent
+- [x] **Files:** `concierge/index.html`
+- [x] **Action:** Review and standardize copy formatting across all plans
+- [x] **Method:** Ensure consistent terminology and punctuation
+- [x] **Test:** Review all three pricing tier descriptions
+- [x] **Commit:** `content: standardize copy formatting across pricing tiers`
 
 #### Enhance Mobile Icon Visibility
-- [ ] **Issue:** Small tick marks hard to see on mobile devices
-- [ ] **Files:** `concierge/style.css`
-- [ ] **Action:** Increase size or weight of plan feature icons
-- [ ] **Test:** Verify visibility on various mobile screen sizes
-- [ ] **Commit:** `style(mobile): improve plan feature icon visibility and size`
+- [x] **Issue:** Small tick marks hard to see on mobile devices
+- [x] **Files:** `concierge/style.css`
+- [x] **Action:** Increase size or weight of plan feature icons
+- [x] **Test:** Verify visibility on various mobile screen sizes
+- [x] **Commit:** `style(mobile): improve plan feature icon visibility and size`
 
 ---
 
@@ -182,10 +182,10 @@
 - [x] Image performance optimization
 
 ### Phase 3 (Medium Priority) - Target: 7 Days
-- [ ] Checkbox alignment fixes
-- [ ] Button contrast improvements
-- [ ] Copy standardization
-- [ ] Mobile icon enhancements
+- [x] Checkbox alignment fixes
+- [x] Button contrast improvements
+- [x] Copy standardization
+- [x] Mobile icon enhancements
 
 ### Phase 4 (Low Priority) - Target: 10 Days
 - [ ] Shipping cost display verification
