@@ -532,7 +532,7 @@ class CheckoutManager {
         const cardTypeIcon = document.getElementById('cardTypeIcon');
         if (!cardTypeIcon) return;
         
-        let cardType = 'generic';
+        let cardType = 'unknown';
         
         if (/^4/.test(cardNumber)) {
             cardType = 'visa';
@@ -544,13 +544,21 @@ class CheckoutManager {
             cardType = 'discover';
         }
         
-        cardTypeIcon.className = `card-type-icon ${cardType}`;
+        const icons = {
+            'visa': '💳',
+            'mastercard': '💳',
+            'amex': '💳',
+            'discover': '💳',
+            'unknown': '💳'
+        };
         
-        // Highlight the active card icon
+        cardTypeIcon.textContent = icons[cardType] || icons.unknown;
+        
+        // Highlight the active card icon (maintain this functionality)
         const paymentIcons = document.querySelectorAll('.payment-method-icons img');
         paymentIcons.forEach(icon => {
             const iconAlt = icon.getAttribute('alt').toLowerCase();
-            if (cardType !== 'generic' && iconAlt.includes(cardType)) {
+            if (cardType !== 'unknown' && iconAlt.includes(cardType)) {
                 icon.classList.add('active');
             } else {
                 icon.classList.remove('active');
