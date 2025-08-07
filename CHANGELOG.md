@@ -1,6 +1,25 @@
 
 # Changelog
 
+## [Phase 8] - 2025-08-06 - Mobile Layout Fixes
+
+### Fixed
+- **Layout:** Adjusted CSS in `concierge/style.css` to improve layout on mobile devices.
+- **Headline:** Reduced font size for better readability on small screens.
+- **Spacing:** Added padding and margins to prevent elements from overlapping.
+
+### Implementation Details
+- **Commit:** `fix(mobile): adjust layout for mobile view`
+- **Files Changed:**
+  - `concierge/style.css`: Added new rules within the `@media (max-width: 768px)` block to target mobile-specific styles.
+- **Impact:** Resolves visual bugs on the concierge page when viewed on mobile devices.
+
+### Branch Information
+- **Branch:** `mobile-fixes`
+- **Status:** Ready for testing
+
+---
+
 ## [Phase 7] - 2025-08-06 - Website Fixes
 
 ### Fixed
