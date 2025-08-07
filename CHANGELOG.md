@@ -1,6 +1,27 @@
 
 # Changelog
 
+## [Phase 7] - 2025-08-06 - Website Fixes
+
+### Fixed
+- **Image Path:** Corrected the hero image path in `concierge/index.html` to point to the root `img` directory.
+- **Layout:** Adjusted the CSS in `concierge/style.css` to add padding and prevent the logo from overlapping with the hero headline.
+
+### Implementation Details
+
+#### Website Fixes
+- **Commit:** `fix(concierge): correct image path and resolve layout overlap`
+- **Files Changed:**
+  - `concierge/index.html`: Updated hero image source from `/concierge/img/bc6.png` to `/img/bc6.png`.
+  - `concierge/style.css`: Added `padding-top: 80px;` to the `.hero .container` class.
+- **Impact:** Resolves visual bugs on the concierge page.
+
+### Branch Information
+- **Branch:** `contact-us-update`
+- **Status:** Ready for testing
+
+---
+
 ## [Phase 5] - 2025-08-06 - Contact Form Implementation
 
 ### Added
