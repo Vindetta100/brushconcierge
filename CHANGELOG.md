@@ -1,6 +1,41 @@
 
 # Changelog
 
+## [Icon Fixes] - 2025-08-07 - Card Icon Standardization
+
+### Fixed
+- Replace CSS-based card icons with emoji icons in concierge checkout for better visual consistency
+- Remove complex payment icon highlighting logic to match welcome folder implementation  
+- Standardize card type detection across all checkout implementations
+
+### Implementation Details
+- **Commit 1**: "Replace complex card icon highlighting with simple emoji approach for better consistency"
+- **Commit 2**: "Update CHANGELOG.md - document concierge icon fixes"
+- **Files Changed:**
+  - `concierge/checkout.js`: Replaced complex CSS class system with simple emoji icons (💳)
+  - `CHANGELOG.md`: Updated with icon fixes documentation
+- **Impact:** Provides consistent card icon display across all checkout implementations
+
+### Code Changes
+**Before**: Complex CSS-based system with payment highlighting
+```javascript
+cardTypeIcon.className = `card-type-icon ${cardType}`;
+// Complex payment highlighting with querySelectorAll
+```
+
+**After**: Clean emoji approach matching root checkout.js
+```javascript
+const cardType = this.getCardType(cardNumber);
+const icons = {'visa': '💳', 'mastercard': '💳', 'amex': '💳', 'discover': '💳', 'unknown': '💳'};
+iconElement.textContent = icons[cardType] || icons.unknown;
+```
+
+### Branch Information
+- **Branch:** `icon-fixes`
+- **Status:** Complete and ready for testing
+
+---
+
 ## [Phase 8] - 2025-08-06 - Mobile Layout Fixes
 
 ### Fixed
