@@ -750,6 +750,7 @@ select.form-control {
   align-items: center;
   position: relative;
   z-index: 1;
+  padding-top: 80px;
 }
 
 /* Desktop layout */
