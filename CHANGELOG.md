@@ -51,6 +51,25 @@
 
 ---
 
+## [Phase 6] - 2025-08-06 - Hero Image Update
+
+### Changed
+- **Hero Image:** Replaced hero image from `img/bc2.png` to `img/bc6.png` on concierge home page
+
+### Implementation Details
+
+#### Hero Image Replacement
+- **Commit:** `feat: replace hero image with updated version`
+- **Files Changed:**
+  - `concierge/index.html`: Updated hero image source from `/concierge/img/bc2.png` to `/concierge/img/bc6.png`
+- **Impact:** Updates the visual representation of the service with new hero imagery
+
+### Branch Information
+- **Branch:** `contact-us-update`
+- **Status:** Ready for testing
+
+---
+
 ## [Phase 4] - 2025-08-05 - Low Priority Enhancements
 
 ### Changed
