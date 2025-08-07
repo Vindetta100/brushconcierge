@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Brush Concierge</title>
+    <meta name="description" content="Get in touch with Brush Concierge for questions about our professional makeup brush cleaning service. Customer support, membership help, and more.">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="header__container">
+            <div class="header__logo">
+                <a href="index.html">
+                    <h1 class="header__title">Brush Concierge</h1>
+                    <p class="header__subtitle">Professional Makeup Brush Cleaning</p>
+                </a>
+            </div>
+            <nav class="header__nav">
+                <a href="index.html" class="nav__link">Home</a>
+                <a href="contact.html" class="nav__link nav__link--active">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main">
+        <section class="hero">
+            <div class="container">
+                <h2 class="hero__title">Get in Touch</h2>
+                <p class="hero__subtitle">We're here to help with all your makeup brush cleaning needs</p>
+            </div>
+        </section>
+
+        <section class="contact">
+            <div class="container">
+                <div class="contact__grid">
+                    <div class="contact__form-container">
+                        <h3 class="section-title">Send us a Message</h3>
+                        <form action="https://formspree.io/f/mdkdpnvy" method="POST" class="contact-form">
+                            <div class="form-group">
+                                <label for="name" class="form-label">Full Name <span class="required">*</span></label>
+                                <input type="text" id="name" name="name" class="form-input" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email" class="form-label">Email Address <span class="required">*</span></label>
+                                <input type="email" id="email" name="email" class="form-input" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="phone" class="form-label">Phone Number <span class="optional">(optional)</span></label>
+                                <input type="tel" id="phone" name="phone" class="form-input">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="subject" class="form-label">Subject <span class="required">*</span></label>
+                                <select id="subject" name="subject" class="form-input" required>
+                                    <option value="">Please select a topic</option>
+                                    <option value="General Inquiry">General Inquiry</option>
+                                    <option value="Membership Questions">Membership Questions</option>
+                                    <option value="Order Support">Order Support</option>
+                                    <option value="Shipping Issues">Shipping Issues</option>
+                                    <option value="Technical Support">Technical Support</option>
+                                    <option value="Partnership/Press">Partnership/Press</option>
+                                    <option value="Feedback/Suggestions">Feedback/Suggestions</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="message" class="form-label">Message <span class="required">*</span></label>
+                                <textarea id="message" name="message" class="form-input" rows="6" required placeholder="Please provide details about your inquiry..."></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <button type="submit" class="btn btn--primary">Send Message</button>
+                            </div>
+
+                            <div class="form-privacy">
+                                <p>By submitting this form, you agree to our privacy policy. We'll only use your information to respond to your inquiry.</p>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="contact__info-container">
+                        <div class="contact__info">
+                            <h3 class="section-title">Contact Information</h3>
+                            
+                            <div class="contact__item">
+                                <h4>Email Support</h4>
+                                <p><a href="mailto:support@brushconcierge.com">support@brushconcierge.com</a></p>
+                            </div>
+
+                            <div class="contact__item">
+                                <h4>Response Time</h4>
+                                <p>We typically respond within 24 hours during business days.</p>
+                            </div>
+
+                            <div class="contact__item">
+                                <h4>Business Hours</h4>
+                                <p>Monday - Friday: 9:00 AM - 6:00 PM PST<br>
+                                Saturday - Sunday: 10:00 AM - 4:00 PM PST</p>
+                            </div>
+
+                            <div class="contact__item">
+                                <h4>Need Immediate Help?</h4>
+                                <p>Check our <a href="#faq" class="text-link">Frequently Asked Questions</a> for quick answers to common questions.</p>
+                            </div>
+                        </div>
+
+                        <div class="trust-indicators">
+                            <div class="trust-item">
+                                <div class="trust-icon">🔒</div>
+                                <p>Your information is secure and will never be shared with third parties.</p>
+                            </div>
+                            <div class="trust-item">
+                                <div class="trust-icon">💬</div>
+                                <p>All inquiries are handled by our professional customer service team.</p>
+                            </div>
+                            <div class="trust-item">
+                                <div class="trust-icon">⚡</div>
+                                <p>Quick response guaranteed within one business day.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer__container">
+            <div class="footer__content">
+                <div class="footer__section">
+                    <h3 class="footer__title">Brush Concierge</h3>
+                    <p class="footer__text">Professional makeup brush cleaning service delivered to your door.</p>
+                </div>
+                <div class="footer__section">
+                    <h4 class="footer__heading">Quick Links</h4>
+                    <ul class="footer__list">
+                        <li><a href="index.html" class="footer__link">Home</a></li>
+                        <li><a href="contact.html" class="footer__link">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer__section">
+                    <h4 class="footer__heading">Contact</h4>
+                    <p class="footer__text">
+                        <a href="mailto:support@brushconcierge.com" class="footer__link">support@brushconcierge.com</a>
+                    </p>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <p>&copy; 2024 Brush Concierge. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <style>
+        /* Contact page specific styles */
+        .contact {
+            padding: 4rem 0;
+            background: #f8f9fa;
+        }
+        
+        .contact__grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .contact-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .contact__info {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .contact__item {
+            margin-bottom: 2rem;
+        }
+        
+        .contact__item h4 {
+            color: #333;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .contact__item p {
+            color: #6c757d;
+            line-height: 1.6;
+        }
+        
+        .trust-indicators {
+            margin-top: 2rem;
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 8px;
+        }
+        
+        .trust-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+        
+        .trust-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .trust-icon {
+            font-size: 1.5rem;
+            margin-right: 1rem;
+            flex-shrink: 0;
+        }
+        
+        .trust-item p {
+            font-size: 0.9rem;
+            color: #333;
+            margin: 0;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+        
+        .required {
+            color: #dc3545;
+        }
+        
+        .optional {
+            color: #6c757d;
+            font-weight: 400;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e9ecef;
+            border-radius: 4px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: #8B0000;
+            box-shadow: 0 0 0 3px rgba(139, 0, 0, 0.1);
+        }
+        
+        .form-privacy {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+        
+        @media (max-width: 768px) {
+            .contact__grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .contact {
+                padding: 2rem 0;
+            }
+            
+            .contact-form,
+            .contact__info {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</body>
+</html>
