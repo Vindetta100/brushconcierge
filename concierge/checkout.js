@@ -545,6 +545,17 @@ class CheckoutManager {
         }
         
         cardTypeIcon.className = `card-type-icon ${cardType}`;
+        
+        // Highlight the active card icon
+        const paymentIcons = document.querySelectorAll('.payment-method-icons img');
+        paymentIcons.forEach(icon => {
+            const iconAlt = icon.getAttribute('alt').toLowerCase();
+            if (cardType !== 'generic' && iconAlt.includes(cardType)) {
+                icon.classList.add('active');
+            } else {
+                icon.classList.remove('active');
+            }
+        });
     }
 
     saveFormData() {
