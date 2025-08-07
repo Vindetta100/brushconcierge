@@ -529,21 +529,10 @@ class CheckoutManager {
     }
 
     updateCardTypeIcon(cardNumber) {
-        const cardTypeIcon = document.getElementById('cardTypeIcon');
-        if (!cardTypeIcon) return;
+        const iconElement = document.getElementById('cardTypeIcon');
+        if (!iconElement) return;
         
-        let cardType = 'unknown';
-        
-        if (/^4/.test(cardNumber)) {
-            cardType = 'visa';
-        } else if (/^5[1-5]/.test(cardNumber)) {
-            cardType = 'mastercard';
-        } else if (/^3[47]/.test(cardNumber)) {
-            cardType = 'amex';
-        } else if (/^6/.test(cardNumber)) {
-            cardType = 'discover';
-        }
-        
+        const cardType = this.getCardType(cardNumber);
         const icons = {
             'visa': '💳',
             'mastercard': '💳',
@@ -552,18 +541,24 @@ class CheckoutManager {
             'unknown': '💳'
         };
         
-        cardTypeIcon.textContent = icons[cardType] || icons.unknown;
+        iconElement.textContent = icons[cardType] || icons.unknown;
+    }
+
+    getCardType(cardNumber) {
+        const patterns = {
+            visa: /^4/,
+            mastercard: /^5[1-5]/,
+            amex: /^3[47]/,
+            discover: /^6(?:011|5)/
+        };
         
-        // Highlight the active card icon (maintain this functionality)
-        const paymentIcons = document.querySelectorAll('.payment-method-icons img');
-        paymentIcons.forEach(icon => {
-            const iconAlt = icon.getAttribute('alt').toLowerCase();
-            if (cardType !== 'unknown' && iconAlt.includes(cardType)) {
-                icon.classList.add('active');
-            } else {
-                icon.classList.remove('active');
+        for (const [type, pattern] of Object.entries(patterns)) {
+            if (pattern.test(cardNumber)) {
+                return type;
             }
-        });
+        }
+        
+        return 'unknown';
     }
 
     saveFormData() {
