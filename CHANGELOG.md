@@ -1,6 +1,24 @@
 
 # Changelog
 
+## [Feature] - 2025-08-07 - Digital Wallet Icon Standardization (v2)
+
+### Changed
+- Standardized the digital wallet icons on the `concierge/checkout.html` page to match the specific, emoji-based style used in the `welcome/checkout.html` page.
+- Replaced the old SVG-based icons with a new structure using `<button>` elements and specific emoji icons (🍎, 🟢, 💙) for each service.
+- Copied relevant CSS rules from `welcome/checkout.css` to `concierge/checkout.css` to ensure the new buttons are styled correctly.
+
+### Files Changed
+- `concierge/checkout.html`
+- `concierge/checkout.css`
+- `CHANGELOG.md`
+
+### Branch Information
+- **Branch:** `feature/digital-wallet-icons`
+- **Status:** Complete and ready for review.
+
+---
+
 ## [Digital Wallets] - 2025-08-07 - Digital Wallets Standardization
 
 ### ✅ Problem Solved
