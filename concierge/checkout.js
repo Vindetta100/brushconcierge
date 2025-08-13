@@ -7,7 +7,7 @@ class CheckoutManager {
             essentials: {
                 name: 'The Essentials',
                 price: 39.00,
-                priceId: 'price_1RsXfJ08jBtUv1BcKxMyi5hR', // UPDATE THIS WITH YOUR STRIPE PRICE ID
+                priceId: 'price_1RsXfJ08jBtUv1BcKxMyi5hR', // REPLACE WITH YOUR STRIPE PRICE ID
                 features: [
                     '10 brushes (any size)',
                     'Monthly service',
@@ -19,7 +19,7 @@ class CheckoutManager {
             curator: {
                 name: 'The Curator',
                 price: 59.00,
-                priceId: 'price_1RsXh608jBtUv1BcDXc1cCT7', // UPDATE THIS WITH YOUR STRIPE PRICE ID
+                priceId: 'price_1RsXh608jBtUv1BcDXc1cCT7', // REPLACE WITH YOUR STRIPE PRICE ID
                 features: [
                     '20 brushes (any size)',
                     'Bi-weekly option available',
@@ -31,7 +31,7 @@ class CheckoutManager {
             atelier: {
                 name: 'The Atelier',
                 price: 99.00,
-                priceId: 'price_1RsXjU08jBtUv1Bca7ZYJT31', // UPDATE THIS WITH YOUR STRIPE PRICE ID
+                priceId: 'price_1RsXjU08jBtUv1Bca7ZYJT31', // REPLACE WITH YOUR STRIPE PRICE ID
                 features: [
                     'Up to 40 brushes',
                     'Bi-weekly service available',
@@ -183,9 +183,6 @@ class CheckoutManager {
         
         // Card input formatting
         this.bindCardFormatting();
-        
-        // Digital payment buttons
-        this.bindDigitalPayments();
     }
 
     initializeForm() {
@@ -302,9 +299,6 @@ class CheckoutManager {
         
         if (paymentMethod === 'card') {
             return this.validateCardDetails();
-        } else if (paymentMethod === 'digital') {
-            // Digital payments are handled separately
-            return true;
         }
         
         return false;
@@ -451,334 +445,6 @@ class CheckoutManager {
         });
     }
 
-    bindFormValidation() {
-        // Real-time validation for key fields
-        const emailField = document.getElementById('email');
-        if (emailField) {
-            emailField.addEventListener('blur', () => {
-                const value = emailField.value.trim();
-                if (value && !this.isValidEmail(value)) {
-                    this.showFieldError('email', 'Please enter a valid email address');
-                } else if (value) {
-                    this.clearFieldError('email');
-                }
-            });
-        }
-        
-        const zipField = document.getElementById('zipCode');
-        if (zipField) {
-            zipField.addEventListener('input', () => {
-                const value = zipField.value.replace(/\D/g, '');
-                zipField.value = value.substring(0, 5);
-            });
-        }
-    }
-
-    bindCardFormatting() {
-        const cardNumberField = document.getElementById('cardNumber');
-        const expiryField = document.getElementById('expiryDate');
-        const cvvField = document.getElementById('cvv');
-        
-        if (cardNumberField) {
-            cardNumberField.addEventListener('input', (e) => {
-                let value = e.target.value.replace(/\D/g, '');
-                value = value.replace(/(\d{4})(?=\d)/g, '$1 ');
-                e.target.value = value.substring(0, 19);
-                
-                // Update card type icon
-                this.updateCardTypeIcon(value.replace(/\s/g, ''));
-            });
-        }
-        
-        if (expiryField) {
-            expiryField.addEventListener('input', (e) => {
-                let value = e.target.value.replace(/\D/g, '');
-                if (value.length >= 2) {
-                    value = value.substring(0, 2) + '/' + value.substring(2, 4);
-                }
-                e.target.value = value;
-            });
-        }
-        
-        if (cvvField) {
-            cvvField.addEventListener('input', (e) => {
-                const value = e.target.value.replace(/\D/g, '');
-                e.target.value = value.substring(0, 4);
-            });
-        }
-    }
-
-    bindDigitalPayments() {
-        // Apple Pay button
-        const applePayBtn = document.getElementById('applePayBtn');
-        if (applePayBtn) {
-            applePayBtn.addEventListener('click', () => this.handleApplePay());
-        }
-        
-        // Google Pay button
-        const googlePayBtn = document.getElementById('googlePayBtn');
-        if (googlePayBtn) {
-            googlePayBtn.addEventListener('click', () => this.handleGooglePay());
-        }
-        
-        // PayPal button
-        const paypalBtn = document.getElementById('paypalBtn');
-        if (paypalBtn) {
-            paypalBtn.addEventListener('click', () => this.handlePayPal());
-        }
-    }
-
-    updateCardTypeIcon(cardNumber) {
-        const iconElement = document.getElementById('cardTypeIcon');
-        if (!iconElement) return;
-        
-        const cardType = this.getCardType(cardNumber);
-        const icons = {
-            'visa': '💳',
-            'mastercard': '💳',
-            'amex': '💳',
-            'discover': '💳',
-            'unknown': '💳'
-        };
-        
-        iconElement.textContent = icons[cardType] || icons.unknown;
-    }
-
-    getCardType(cardNumber) {
-        const patterns = {
-            visa: /^4/,
-            mastercard: /^5[1-5]/,
-            amex: /^3[47]/,
-            discover: /^6(?:011|5)/
-        };
-        
-        for (const [type, pattern] of Object.entries(patterns)) {
-            if (pattern.test(cardNumber)) {
-                return type;
-            }
-        }
-        
-        return 'unknown';
-    }
-
-    saveFormData() {
-        const formData = this.collectFormData();
-        localStorage.setItem('checkoutFormData', JSON.stringify(formData));
-    }
-
-    populateFormFromStorage() {
-        try {
-            const savedData = localStorage.getItem('checkoutFormData');
-            if (savedData) {
-                const formData = JSON.parse(savedData);
-                
-                Object.entries(formData).forEach(([key, value]) => {
-                    const field = document.getElementById(key);
-                    if (field && value) {
-                        if (field.type === 'checkbox') {
-                            field.checked = value;
-                        } else {
-                            field.value = value;
-                        }
-                    }
-                });
-            }
-        } catch (e) {
-            console.error('Error loading saved form data:', e);
-        }
-    }
-
-    setupRealTimeValidation() {
-        // Add real-time validation for better UX
-        const form = document.getElementById('checkoutForm');
-        if (form) {
-            form.addEventListener('input', (e) => {
-                const field = e.target;
-                if (field.classList.contains('error')) {
-                    // Re-validate field if it was previously in error state
-                    setTimeout(() => {
-                        if (field.value.trim()) {
-                            this.clearFieldError(field.id);
-                        }
-                    }, 500);
-                }
-            });
-        }
-    }
-
-    async handleSubmit(e) {
-        e.preventDefault();
-        
-        // Validate final step
-        const termsChecked = document.getElementById('agreeTerms')?.checked;
-        const subscriptionChecked = document.getElementById('agreeSubscription')?.checked;
-        
-        if (!termsChecked || !subscriptionChecked) {
-            alert('Please agree to the terms and conditions to continue.');
-            return;
-        }
-        
-        // Show loading state
-        const submitBtn = document.getElementById('completeOrder');
-        if (submitBtn) {
-            submitBtn.classList.add('loading');
-            submitBtn.disabled = true;
-            submitBtn.querySelector('.btn-text').textContent = 'Processing...';
-        }
-        
-        try {
-            // Process payment through Stripe
-            await this.processStripePayment();
-            
-        } catch (error) {
-            console.error('Payment processing error:', error);
-            
-            // Show user-friendly error message
-            const errorMessage = error.message || 'There was an error processing your payment. Please try again.';
-            alert(errorMessage);
-            
-        } finally {
-            // Remove loading state
-            if (submitBtn) {
-                submitBtn.classList.remove('loading');
-                submitBtn.disabled = false;
-                submitBtn.querySelector('.btn-text').textContent = 'Complete Order';
-            }
-        }
-    }
-
-    async processStripePayment() {
-        // Collect all form data
-        const formData = this.collectFormData();
-        
-        // Validate required fields one more time
-        if (!this.validateFormData(formData)) {
-            throw new Error('Please fill in all required fields correctly.');
-        }
-        
-        try {
-            // Call our API endpoint to create Stripe checkout session
-            const response = await fetch('/api/create-checkout-session', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formData)
-            });
-            
-            // Check if response is ok
-            if (!response.ok) {
-                let errorMessage = `HTTP error! status: ${response.status}`;
-                
-                // Try to parse error response as JSON
-                try {
-                    const errorData = await response.json();
-                    errorMessage = errorData.error || errorMessage;
-                } catch (parseError) {
-                    // If JSON parsing fails, try to get text
-                    try {
-                        const errorText = await response.text();
-                        if (errorText && !errorText.includes('<html')) {
-                            errorMessage = errorText;
-                        }
-                    } catch (textError) {
-                        // Use default error message
-                    }
-                }
-                
-                throw new Error(errorMessage);
-            }
-            
-            // Parse successful response
-            const responseData = await response.json();
-            const { url } = responseData;
-            
-            if (!url) {
-                throw new Error('No checkout URL received from server');
-            }
-            
-            // Save form data before redirecting
-            this.saveFormData();
-            
-            // Redirect to Stripe Checkout
-            window.location.href = url;
-            
-        } catch (error) {
-            console.error('Stripe payment processing error:', error);
-            throw error;
-        }
-    }
-
-    collectFormData() {
-        const tier = this.tierData[this.selectedTier];
-        return {
-            tier: this.selectedTier,
-            priceId: tier.priceId,
-            firstName: document.getElementById('firstName')?.value?.trim() || '',
-            lastName: document.getElementById('lastName')?.value?.trim() || '',
-            email: document.getElementById('email')?.value?.trim() || '',
-            phone: document.getElementById('phone')?.value?.trim() || '',
-            address1: document.getElementById('address1')?.value?.trim() || '',
-            address2: document.getElementById('address2')?.value?.trim() || '',
-            city: document.getElementById('city')?.value?.trim() || '',
-            state: document.getElementById('state')?.value || '',
-            zipCode: document.getElementById('zipCode')?.value?.trim() || '',
-            brushTypes: document.getElementById('brushTypes')?.value?.trim() || '',
-            deliveryNotes: document.getElementById('deliveryNotes')?.value?.trim() || '',
-            marketingEmails: document.getElementById('marketingEmails')?.checked || false
-        };
-    }
-
-    validateFormData(data) {
-        const requiredFields = ['firstName', 'lastName', 'email', 'address1', 'city', 'state', 'zipCode'];
-        
-        for (const field of requiredFields) {
-            if (!data[field]) {
-                console.error(`Missing required field: ${field}`);
-                return false;
-            }
-        }
-        
-        // Validate email format
-        if (!this.isValidEmail(data.email)) {
-            console.error('Invalid email format');
-            return false;
-        }
-        
-        // Validate ZIP code format
-        if (!this.isValidZipCode(data.zipCode)) {
-            console.error('Invalid ZIP code format');
-            return false;
-        }
-        
-        return true;
-    }
-
-    async processPayment() {
-        // Legacy method - keeping for backward compatibility
-        // This is now replaced by processStripePayment()
-        return this.processStripePayment();
-    }
-
-    showSuccessModal() {
-        const modal = document.getElementById('successModal');
-        if (modal) {
-            modal.style.display = 'flex';
-            modal.classList.add('fade-in');
-            
-            // Prevent body scroll
-            document.body.style.overflow = 'hidden';
-            
-            // Send confirmation email (in real implementation)
-            this.sendConfirmationEmail();
-        }
-    }
-
-    sendConfirmationEmail() {
-        // In a real implementation, trigger confirmation email
-        console.log('Confirmation email would be sent to:', this.formData.email);
-    }
-
     // Validation helper methods
     isValidEmail(email) {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -791,8 +457,8 @@ class CheckoutManager {
     }
 
     isValidCardNumber(cardNumber) {
-        const cleanNumber = cardNumber.replace(/\s/g, '');
-        return /^\d{13,19}$/.test(cleanNumber);
+        const cleaned = cardNumber.replace(/\s/g, '');
+        return cleaned.length >= 13 && cleaned.length <= 19 && /^\d+$/.test(cleaned);
     }
 
     isValidExpiryDate(expiryDate) {
@@ -810,6 +476,87 @@ class CheckoutManager {
         return /^\d{3,4}$/.test(cvv);
     }
 
+    // Form data management
+    saveFormData() {
+        const formData = new FormData(document.getElementById('checkoutForm'));
+        const data = Object.fromEntries(formData.entries());
+        localStorage.setItem('checkoutFormData', JSON.stringify(data));
+    }
+
+    populateFormFromStorage() {
+        const savedData = localStorage.getItem('checkoutFormData');
+        if (savedData) {
+            const data = JSON.parse(savedData);
+            Object.entries(data).forEach(([key, value]) => {
+                const field = document.getElementById(key);
+                if (field) {
+                    field.value = value;
+                }
+            });
+        }
+    }
+
+    // Real-time validation setup
+    setupRealTimeValidation() {
+        const fields = ['firstName', 'lastName', 'email', 'address1', 'city', 'zipCode'];
+        
+        fields.forEach(fieldName => {
+            const field = document.getElementById(fieldName);
+            if (field) {
+                field.addEventListener('blur', () => {
+                    if (field.value.trim()) {
+                        this.clearFieldError(fieldName);
+                    }
+                });
+            }
+        });
+    }
+
+    bindFormValidation() {
+        // Add real-time validation for all form fields
+        const form = document.getElementById('checkoutForm');
+        if (form) {
+            form.addEventListener('input', (e) => {
+                if (e.target.classList.contains('error')) {
+                    this.clearFieldError(e.target.id);
+                }
+            });
+        }
+    }
+
+    bindCardFormatting() {
+        const cardNumberField = document.getElementById('cardNumber');
+        const expiryField = document.getElementById('expiryDate');
+        const cvvField = document.getElementById('cvv');
+
+        if (cardNumberField) {
+            cardNumberField.addEventListener('input', (e) => {
+                let value = e.target.value.replace(/\s/g, '');
+                let formattedValue = value.replace(/(.{4})/g, '$1 ').trim();
+                if (formattedValue.length > 19) {
+                    formattedValue = formattedValue.substring(0, 19);
+                }
+                e.target.value = formattedValue;
+            });
+        }
+
+        if (expiryField) {
+            expiryField.addEventListener('input', (e) => {
+                let value = e.target.value.replace(/\D/g, '');
+                if (value.length >= 2) {
+                    value = value.substring(0, 2) + '/' + value.substring(2, 4);
+                }
+                e.target.value = value;
+            });
+        }
+
+        if (cvvField) {
+            cvvField.addEventListener('input', (e) => {
+                e.target.value = e.target.value.replace(/\D/g, '').substring(0, 4);
+            });
+        }
+    }
+
     updateReviewContent() {
         // Update customer information review
         const customerReview = document.getElementById('customerReview');
@@ -821,7 +568,7 @@ class CheckoutManager {
             const city = document.getElementById('city')?.value || '';
             const state = document.getElementById('state')?.value || '';
             const zipCode = document.getElementById('zipCode')?.value || '';
-            
+
             customerReview.innerHTML = `
                 <p><strong>${firstName} ${lastName}</strong></p>
                 <p>${email}</p>
@@ -829,86 +576,109 @@ class CheckoutManager {
                 <p>${city}, ${state} ${zipCode}</p>
             `;
         }
-        
+
         // Update payment method review
         const paymentReview = document.getElementById('paymentReview');
         if (paymentReview) {
-            const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked')?.value;
+            const cardNumber = document.getElementById('cardNumber')?.value || '';
+            const lastFour = cardNumber.replace(/\s/g, '').slice(-4);
             
-            if (paymentMethod === 'card') {
-                const cardNumber = document.getElementById('cardNumber')?.value || '';
-                const maskedCard = '**** **** **** ' + cardNumber.slice(-4);
-                paymentReview.innerHTML = `<p>Credit Card ending in ${cardNumber.slice(-4)}</p>`;
-            } else if (paymentMethod === 'digital') {
-                paymentReview.innerHTML = `<p>Digital Payment</p>`;
+            paymentReview.innerHTML = `
+                <p><strong>Credit Card</strong></p>
+                <p>•••• •••• •••• ${lastFour}</p>
+            `;
+        }
+    }
+
+    handleSubmit(e) {
+        e.preventDefault();
+        
+        if (!this.validateTermsAcceptance()) {
+            alert('Please accept the terms and conditions to continue.');
+            return;
+        }
+
+        // Show loading state
+        const submitBtn = document.getElementById('completeOrder');
+        if (submitBtn) {
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Processing...';
+        }
+
+        // Prepare data for Stripe
+        const tier = this.tierData[this.selectedTier];
+        const formData = new FormData(e.target);
+        const customerData = Object.fromEntries(formData.entries());
+
+        // Create Stripe checkout session
+        this.createStripeSession(tier, customerData);
+    }
+
+    async createStripeSession(tier, customerData) {
+        try {
+            const response = await fetch('/api/create-checkout-session', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    priceId: tier.priceId,
+                    customerData: customerData,
+                    tier: this.selectedTier
+                })
+            });
+
+            const session = await response.json();
+
+            if (session.url) {
+                // Save form data before redirect
+                this.saveFormData();
+                
+                // Redirect to Stripe Checkout
+                window.location.href = session.url;
+            } else {
+                throw new Error('Failed to create checkout session');
+            }
+        } catch (error) {
+            console.error('Error creating checkout session:', error);
+            alert('There was an error processing your payment. Please try again.');
+            
+            // Reset submit button
+            const submitBtn = document.getElementById('completeOrder');
+            if (submitBtn) {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Complete Order';
             }
         }
     }
 
-    // Digital payment handlers
-    async handleApplePay() {
-        // Apple Pay implementation would go here
-        console.log('Apple Pay selected');
-        alert('Apple Pay integration would be implemented here');
-    }
-
-    async handleGooglePay() {
-        // Google Pay implementation would go here
-        console.log('Google Pay selected');
-        alert('Google Pay integration would be implemented here');
-    }
-
-    async handlePayPal() {
-        // PayPal implementation would go here
-        console.log('PayPal selected');
-        alert('PayPal integration would be implemented here');
+    showSuccessModal() {
+        // Create and show success modal
+        const modal = document.createElement('div');
+        modal.className = 'success-modal';
+        modal.innerHTML = `
+            <div class="modal-content">
+                <div class="success-icon">✓</div>
+                <h2>Welcome to Brush Concierge!</h2>
+                <p>Your subscription has been successfully activated.</p>
+                <p>You'll receive a welcome email with your shipping kit within the next few minutes.</p>
+                <button onclick="window.location.href='index.html'" class="btn btn--primary">
+                    Return to Home
+                </button>
+            </div>
+        `;
+        
+        document.body.appendChild(modal);
+        
+        // Auto-redirect after 10 seconds
+        setTimeout(() => {
+            window.location.href = 'index.html';
+        }, 10000);
     }
 }
 
-// Utility functions
-function formatCurrency(amount) {
-    return new Intl.NumberFormat('en-US', {
-        style: 'currency',
-        currency: 'USD'
-    }).format(amount);
-}
-
-function debounce(func, wait) {
-    let timeout;
-    return function executedFunction(...args) {
-        const later = () => {
-            clearTimeout(timeout);
-            func(...args);
-        };
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-    };
-}
-
-// Initialize checkout when DOM is loaded
+// Initialize checkout manager when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-    const checkout = new CheckoutManager();
-    
-    // Make checkout instance globally available for debugging
-    window.checkout = checkout;
-    
-    // Handle window resize for responsive behavior
-    window.addEventListener('resize', debounce(() => {
-        checkout.initializeSummaryToggle();
-    }, 250));
-    
-    // Handle back button
-    window.addEventListener('popstate', (e) => {
-        if (e.state && e.state.step) {
-            checkout.goToStep(e.state.step);
-        }
-    });
-    
-    // Add initial state to history
-    history.replaceState({ step: 1 }, 'Step 1', window.location.href);
+    new CheckoutManager();
 });
 
-// Export for potential module usage
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = CheckoutManager;
-}
