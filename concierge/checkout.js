@@ -652,8 +652,8 @@ class CheckoutManager {
                 },
                 body: JSON.stringify({
                     priceId: tier.priceId,
-                    customerData: customerData,
-                    tier: this.selectedTier
+                    tier: this.selectedTier,
+                    ...customerData
                 })
             });
 

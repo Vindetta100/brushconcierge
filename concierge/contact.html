@@ -7,6 +7,227 @@
     <meta name="description" content="Get in touch with Brush Concierge for questions about our professional makeup brush cleaning service. Customer support, membership help, and more.">
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* Enhanced Contact Page Styling */
+        .contact {
+            padding: 60px 0;
+            background: linear-gradient(135deg, #fdf2f8 0%, #fef7ff 100%);
+        }
+        
+        .contact__grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            max-width: 1200px;
+            margin: 0 auto;
+            align-items: start;
+        }
+        
+        @media (max-width: 768px) {
+            .contact__grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+        
+        .contact__form-container {
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 1px solid #f3e8ff;
+        }
+        
+        .contact__info-container {
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 1px solid #f3e8ff;
+        }
+        
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+        
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .form-label {
+            font-weight: 600;
+            color: #374151;
+            font-size: 14px;
+            letter-spacing: 0.025em;
+        }
+        
+        .required {
+            color: #dc2626;
+        }
+        
+        .optional {
+            color: #6b7280;
+            font-weight: 400;
+        }
+        
+        .form-input {
+            padding: 12px 16px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background: #fafafa;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: #d97706;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.1);
+        }
+        
+        .form-input:hover {
+            border-color: #d1d5db;
+            background: white;
+        }
+        
+        textarea.form-input {
+            resize: vertical;
+            min-height: 120px;
+            font-family: inherit;
+        }
+        
+        .btn {
+            padding: 16px 32px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .btn--primary {
+            background: linear-gradient(135deg, #d97706 0%, #92400e 100%);
+            color: white;
+            box-shadow: 0 4px 12px rgba(217, 119, 6, 0.3);
+        }
+        
+        .btn--primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(217, 119, 6, 0.4);
+        }
+        
+        .form-privacy {
+            background: #f9fafb;
+            padding: 16px;
+            border-radius: 8px;
+            border-left: 4px solid #d97706;
+        }
+        
+        .form-privacy p {
+            margin: 0;
+            font-size: 14px;
+            color: #6b7280;
+            line-height: 1.5;
+        }
+        
+        .contact__info {
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
+        
+        .contact__item {
+            padding: 24px;
+            background: #f9fafb;
+            border-radius: 12px;
+            border-left: 4px solid #d97706;
+        }
+        
+        .contact__item h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: #1f2937;
+            margin: 0 0 12px 0;
+        }
+        
+        .contact__item p {
+            margin: 0;
+            color: #4b5563;
+            line-height: 1.6;
+        }
+        
+        .contact__item a {
+            color: #d97706;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .contact__item a:hover {
+            color: #92400e;
+            text-decoration: underline;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .hero__title {
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
+            font-weight: 700;
+            margin: 0 0 16px 0;
+        }
+        
+        .hero__subtitle {
+            font-size: 20px;
+            color: #d1d5db;
+            margin: 0;
+            font-weight: 300;
+        }
+        
+        @media (max-width: 768px) {
+            .hero__title {
+                font-size: 36px;
+            }
+            
+            .hero__subtitle {
+                font-size: 18px;
+            }
+            
+            .contact__form-container,
+            .contact__info-container {
+                padding: 24px;
+            }
+            
+            .section-title {
+                font-size: 24px;
+            }
+        }
+    </style>
 </head>
 <body>
     <header class="header">
@@ -73,7 +294,10 @@
                             </div>
 
                             <div class="form-group">
-                                <button type="submit" class="btn btn--primary">Send Message</button>
+                                <button type="submit" class="btn btn--primary">
+                                    Send Message
+                                    <span>→</span>
+                                </button>
                             </div>
 
                             <div class="form-privacy">
@@ -87,39 +311,28 @@
                             <h3 class="section-title">Contact Information</h3>
                             
                             <div class="contact__item">
-                                <h4>Email Support</h4>
-                                <p><a href="mailto:support@brushconcierge.com">support@brushconcierge.com</a></p>
-                            </div>
-
-                            <div class="contact__item">
-                                <h4>Response Time</h4>
-                                <p>We typically respond within 24 hours during business days.</p>
+                                <h4>Customer Support</h4>
+                                <p>For all questions about your subscription, orders, or our cleaning process.</p>
+                                <p><strong>Response Time:</strong> Within 24 hours</p>
                             </div>
 
                             <div class="contact__item">
                                 <h4>Business Hours</h4>
-                                <p>Monday - Friday: 9:00 AM - 6:00 PM PST<br>
-                                Saturday - Sunday: 10:00 AM - 4:00 PM PST</p>
+                                <p><strong>Monday - Friday:</strong> 9:00 AM - 6:00 PM PST</p>
+                                <p><strong>Saturday:</strong> 10:00 AM - 4:00 PM PST</p>
+                                <p><strong>Sunday:</strong> Closed</p>
                             </div>
 
                             <div class="contact__item">
-                                <h4>Need Immediate Help?</h4>
-                                <p>Check our <a href="#faq" class="text-link">Frequently Asked Questions</a> for quick answers to common questions.</p>
+                                <h4>Emergency Support</h4>
+                                <p>For urgent shipping or order issues, please mark your message as "Urgent" in the subject line.</p>
+                                <p>We'll respond within 4 hours during business days.</p>
                             </div>
-                        </div>
 
-                        <div class="trust-indicators">
-                            <div class="trust-item">
-                                <div class="trust-icon">🔒</div>
-                                <p>Your information is secure and will never be shared with third parties.</p>
-                            </div>
-                            <div class="trust-item">
-                                <div class="trust-icon">💬</div>
-                                <p>All inquiries are handled by our professional customer service team.</p>
-                            </div>
-                            <div class="trust-item">
-                                <div class="trust-icon">⚡</div>
-                                <p>Quick response guaranteed within one business day.</p>
+                            <div class="contact__item">
+                                <h4>Partnership Inquiries</h4>
+                                <p>Interested in partnering with Brush Concierge? We'd love to hear from you.</p>
+                                <p>Please select "Partnership/Press" in the subject dropdown above.</p>
                             </div>
                         </div>
                     </div>
@@ -133,157 +346,34 @@
             <div class="footer__content">
                 <div class="footer__section">
                     <h3 class="footer__title">Brush Concierge</h3>
-                    <p class="footer__text">Professional makeup brush cleaning service delivered to your door.</p>
+                    <p class="footer__description">Professional makeup brush cleaning service that keeps your tools pristine and your skin healthy.</p>
                 </div>
+                
                 <div class="footer__section">
-                    <h4 class="footer__heading">Quick Links</h4>
-                    <ul class="footer__list">
+                    <h4 class="footer__subtitle">Quick Links</h4>
+                    <ul class="footer__links">
                         <li><a href="index.html" class="footer__link">Home</a></li>
-                        <li><a href="contact.html" class="footer__link">Contact Us</a></li>
+                        <li><a href="contact.html" class="footer__link">Contact</a></li>
+                        <li><a href="../legal.html#terms" class="footer__link">Terms of Service</a></li>
+                        <li><a href="../legal.html#privacy" class="footer__link">Privacy Policy</a></li>
                     </ul>
                 </div>
+                
                 <div class="footer__section">
-                    <h4 class="footer__heading">Contact</h4>
-                    <p class="footer__text">
-                        <a href="mailto:support@brushconcierge.com" class="footer__link">support@brushconcierge.com</a>
-                    </p>
+                    <h4 class="footer__subtitle">Support</h4>
+                    <ul class="footer__links">
+                        <li><a href="contact.html" class="footer__link">Customer Support</a></li>
+                        <li><a href="contact.html" class="footer__link">Shipping Info</a></li>
+                        <li><a href="contact.html" class="footer__link">FAQ</a></li>
+                    </ul>
                 </div>
             </div>
+            
             <div class="footer__bottom">
-                <p>&copy; 2024 Brush Concierge. All rights reserved.</p>
+                <p class="footer__copyright">&copy; 2025 Brush Concierge. All rights reserved.</p>
             </div>
         </div>
     </footer>
-
-    <style>
-        /* Contact page specific styles */
-        .contact {
-            padding: 4rem 0;
-            background: #f8f9fa;
-        }
-        
-        .contact__grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .contact-form {
-            background: white;
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        
-        .contact__info {
-            background: white;
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        
-        .contact__item {
-            margin-bottom: 2rem;
-        }
-        
-        .contact__item h4 {
-            color: #333;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-        }
-        
-        .contact__item p {
-            color: #6c757d;
-            line-height: 1.6;
-        }
-        
-        .trust-indicators {
-            margin-top: 2rem;
-            background: #f8f9fa;
-            padding: 2rem;
-            border-radius: 8px;
-        }
-        
-        .trust-item {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 1.5rem;
-        }
-        
-        .trust-item:last-child {
-            margin-bottom: 0;
-        }
-        
-        .trust-icon {
-            font-size: 1.5rem;
-            margin-right: 1rem;
-            flex-shrink: 0;
-        }
-        
-        .trust-item p {
-            font-size: 0.9rem;
-            color: #333;
-            margin: 0;
-        }
-        
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-        
-        .form-label {
-            display: block;
-            font-weight: 500;
-            margin-bottom: 0.5rem;
-            color: #333;
-        }
-        
-        .required {
-            color: #dc3545;
-        }
-        
-        .optional {
-            color: #6c757d;
-            font-weight: 400;
-        }
-        
-        .form-input {
-            width: 100%;
-            padding: 0.75rem;
-            border: 2px solid #e9ecef;
-            border-radius: 4px;
-            font-size: 1rem;
-            transition: border-color 0.3s;
-        }
-        
-        .form-input:focus {
-            outline: none;
-            border-color: #8B0000;
-            box-shadow: 0 0 0 3px rgba(139, 0, 0, 0.1);
-        }
-        
-        .form-privacy {
-            margin-top: 1rem;
-            font-size: 0.9rem;
-            color: #6c757d;
-        }
-        
-        @media (max-width: 768px) {
-            .contact__grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-            
-            .contact {
-                padding: 2rem 0;
-            }
-            
-            .contact-form,
-            .contact__info {
-                padding: 1.5rem;
-            }
-        }
-    </style>
 </body>
 </html>
+
