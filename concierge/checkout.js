@@ -157,7 +157,10 @@ class CheckoutManager {
     bindEvents() {
         // Step navigation
         document.getElementById('continueToPayment')?.addEventListener('click', () => this.validateAndContinue(1));
-        document.getElementById('backToInfo')?.addEventListener('click', () => this.goToStep(1));
+        document.getElementById('backToInfo')?.addEventListener('click', () => {
+            this.clearSensitiveData();
+            this.goToStep(1);
+        });
         document.getElementById('reviewOrder')?.addEventListener('click', () => this.validateAndContinue(2));
         document.getElementById('backToPayment')?.addEventListener('click', () => this.goToStep(2));
         
@@ -183,6 +186,10 @@ class CheckoutManager {
         
         // Card input formatting
         this.bindCardFormatting();
+        
+        // Security: Clear sensitive data on page navigation
+        window.addEventListener('beforeunload', () => this.clearSensitiveData());
+        window.addEventListener('blur', () => this.clearSensitiveData());
     }
 
     initializeForm() {
@@ -483,6 +490,13 @@ class CheckoutManager {
     saveFormData() {
         const formData = new FormData(document.getElementById('checkoutForm'));
         const data = Object.fromEntries(formData.entries());
+        
+        // Remove sensitive payment information for security
+        const sensitiveFields = ['cardNumber', 'expiryDate', 'cvv', 'cardName'];
+        sensitiveFields.forEach(field => {
+            delete data[field];
+        });
+        
         localStorage.setItem('checkoutFormData', JSON.stringify(data));
     }
 
@@ -497,6 +511,18 @@ class CheckoutManager {
                 }
             });
         }
+    }
+
+    clearSensitiveData() {
+        // Clear credit card fields for security
+        const sensitiveFields = ['cardNumber', 'expiryDate', 'cvv', 'cardName'];
+        sensitiveFields.forEach(fieldId => {
+            const field = document.getElementById(fieldId);
+            if (field) {
+                field.value = '';
+                this.clearFieldError(fieldId);
+            }
+        });
     }
 
     // Real-time validation setup
