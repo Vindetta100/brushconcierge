@@ -189,7 +189,6 @@ class CheckoutManager {
         
         // Security: Clear sensitive data on page navigation
         window.addEventListener('beforeunload', () => this.clearSensitiveData());
-        window.addEventListener('blur', () => this.clearSensitiveData());
     }
 
     initializeForm() {
