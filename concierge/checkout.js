@@ -385,8 +385,9 @@ class CheckoutManager {
         const subscriptionChecked = document.getElementById('agreeSubscription')?.checked;
         const completeOrderBtn = document.getElementById('completeOrder');
         
+        const bothTermsAccepted = termsChecked && subscriptionChecked;
+        
         if (completeOrderBtn) {
-            const bothTermsAccepted = termsChecked && subscriptionChecked;
             completeOrderBtn.disabled = !bothTermsAccepted;
             
             // Add visual feedback
@@ -398,6 +399,8 @@ class CheckoutManager {
                 completeOrderBtn.classList.remove('enabled');
             }
         }
+        
+        return bothTermsAccepted;
     }
 
     handlePaymentMethodChange() {
@@ -681,4 +684,3 @@ class CheckoutManager {
 document.addEventListener('DOMContentLoaded', () => {
     new CheckoutManager();
 });
-
